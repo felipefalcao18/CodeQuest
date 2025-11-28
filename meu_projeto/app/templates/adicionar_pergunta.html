@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Adicionar Pergunta — CodeQuest</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/adicionar_pergunta.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+  <button id="toggleTheme" class="btn-theme" aria-label="Alternar tema">
+    <span id="themeIcon">🌙</span>
+  </button>
+
+  <div class="form-container">
+    <div class="form-header">
+      <div class="logo">
+    <img src="{{ url_for('static', filename='images/logo-removebg-preview.png') }}" alt="CodeQuest Logo">
+  </div>
+      <h1>Adicionar Nova Pergunta</h1>
+      <p>Preencha os campos abaixo para criar sua pergunta</p>
+    </div>
+
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+      {% if mensagens %}
+        {% for categoria, msg in mensagens %}
+          <div class="flash-messages {{ categoria }}">
+            {{ msg }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <div class="input-group">
+        <label for="titulo">
+          <i data-feather="edit-3" class="label-icon"></i>
+          Título
+        </label>
+        <input type="text" id="titulo" name="titulo" class="input-field" placeholder="Digite o título da pergunta" required />
+      </div>
+
+      <div class="input-group">
+        <label for="conteudo">
+          <i data-feather="file-text" class="label-icon"></i>
+          Conteúdo
+        </label>
+        <textarea id="conteudo" name="conteudo" class="input-field textarea-field" placeholder="Descreva sua pergunta detalhadamente..." required></textarea>
+      </div>
+
+      <div class="input-row">
+        <div class="input-group">
+          <label for="categoria">
+            <i data-feather="tag" class="label-icon"></i>
+            Categoria
+          </label>
+          <select id="categoria" name="categoria" class="input-field select-field" required>
+            <option value="">Selecione uma categoria</option>
+            <option value="Algoritmos">Algoritmos</option>
+            <option value="Arquitetura">Arquitetura</option>
+            <option value="Backend">Backend</option>
+            <option value="Boas Práticas">Boas Práticas</option>
+            <option value="C#">C#</option>
+            <option value="C++">C++</option>
+            <option value="HTML/CSS">HTML/CSS</option>
+            <option value="Java">Java</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Kotlin">Kotlin</option>
+            <option value="Outros">Outros</option>
+            <option value="POO">POO</option>
+            <option value="Python">Python</option>
+            <option value="Redes">Redes</option>
+            <option value="Segurança">Segurança</option>
+            <option value="Sistemas Operacionais">Sistemas Operacionais</option>
+            <option value="SQL">SQL</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="dificuldade">
+            <i data-feather="bar-chart-2" class="label-icon"></i>
+            Dificuldade
+          </label>
+          <select id="dificuldade" name="dificuldade" class="input-field select-field" required>
+            <option value="">Selecione a dificuldade</option>
+            <option value="facil">🟢 Fácil</option>
+            <option value="medio">🟡 Médio</option>
+            <option value="dificil">🔴 Difícil</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        <i data-feather="save" class="btn-icon"></i>
+        Salvar Pergunta
+      </button>
+    </form>
+
+    <div class="button-group">
+      <a href="{{ url_for('routes.listar_perguntas') }}" class="btn btn-secondary">
+        <i data-feather="arrow-left" class="btn-icon"></i>
+        Voltar para perguntas
+      </a>
+    </div>
+  </div>
+
+  <script defer src="{{ url_for('static', filename='JS/adicionar_pergunta.js') }}"></script>
+</body>
+</html>

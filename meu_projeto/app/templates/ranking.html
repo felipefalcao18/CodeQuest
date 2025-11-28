@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ranking – CodeQuest</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/ranking.css') }}">
+</head>
+
+<body>
+  
+<header class="nav">
+  <div class="wrap">
+    <div class="logo">
+      <a href="{{ url_for('routes.dashboard') }}" class="logo-link" title="Ir para o Dashboard">
+        <img src="{{ url_for('static', filename='images/logo-removebg-preview.png') }}" alt="CodeQuest Logo">
+      </a>
+    </div>
+
+    <button class="nav-toggle" aria-label="Abrir menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav-links" aria-label="menu principal">
+      <a href="/dashboard">Início</a>
+      <a href="/perguntas">Perguntas & Respostas</a>
+      <a href="/quiz">Quiz</a>
+      <a href="/cursos">Cursos</a>
+      <a href="/sobre">Sobre nós</a>
+      <a href="/ranking" class="active">Ranking</a> 
+      <a href="/perfil">Perfil</a>
+      <a class="cta" href="/logout">Sair</a>
+
+      <div class="theme-toggle">
+        <input type="checkbox" id="dark-mode-toggle"
+               aria-label="Alternar entre modo claro e modo escuro"/>
+        <label for="dark-mode-toggle" class="slider"></label>
+        <span class="mode-label">Claro</span>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  
+  <div class="ranking-list">
+    <h2>🏆 Ranking de Pontuação</h2>
+    
+    {% for usuario in top_usuarios %}
+    <div class="ranking-item {% if usuario.id == usuario_logado.id %}usuario-logado{% endif %}">
+      
+      <div class="ranking-posicao">
+        {% if loop.index == 1 %}
+          <span class="medalha ouro">🥇</span>
+        {% elif loop.index == 2 %}
+          <span class="medalha prata">🥈</span>
+        {% elif loop.index == 3 %}
+          <span class="medalha bronze">🥉</span>
+        {% else %}
+          <span class="posicao-numero">#{{ loop.index }}</span>
+        {% endif %}
+      </div>
+      
+      <div class="ranking-avatar">
+        {% if usuario['foto_perfil'] %}
+          <img src="{{ url_for('static', filename='uploads/' + usuario['foto_perfil']) }}" 
+               alt="{{ usuario['nome'] }}"
+               loading="lazy">
+        {% else %}
+          <div class="avatar-placeholder">
+            {{ usuario['nome'][0].upper() }}
+          </div>
+        {% endif %}
+      </div>
+      
+      <div class="ranking-info">
+        <div class="ranking-nome">
+          {{ usuario['nome'] }}
+          {% if usuario['id'] == usuario_logado.id %}
+            <span class="badge-voce">Você</span>
+          {% endif %}
+        </div>
+        <div class="ranking-stats">
+          <!-- Estatísticas adicionais podem ser adicionadas aqui -->
+        </div>
+      </div>
+      
+      <div class="ranking-pontuacao">
+        <div class="pontos-valor">{{ usuario['pontuacao_total'] }}</div>
+        <div class="pontos-label">pontos</div>
+      </div>
+      
+    </div>
+    {% endfor %}
+    
+    {% if not top_usuarios %}
+    <div style="text-align: center; padding: 40px 20px; color: var(--muted);">
+      <p style="font-size: 48px; margin-bottom: 16px;">📊</p>
+      <p>Nenhum usuário no ranking ainda.</p>
+      <p>Seja o primeiro a conquistar pontos!</p>
+    </div>
+    {% endif %}
+    
+  </div>
+
+  <footer>
+    © {{ ano_atual }} – CodeQuest. Desenvolvido para facilitar o aprendizado.
+  </footer>
+</main>
+
+<!-- JavaScript próprio do Ranking -->
+<script defer src="{{ url_for('static', filename='JS/ranking.js') }}"></script>
+
+</body>
+</html>

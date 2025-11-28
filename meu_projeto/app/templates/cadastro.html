@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cadastro – CodeQuest</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/cadastro.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+  <!-- Botão de alternância de tema -->
+  <button id="toggleTheme" class="btn-theme" aria-label="Alternar tema">
+    <span id="themeIcon">🌙</span>
+  </button>
+
+  <div class="form-container">
+    <div class="form-header">
+  <div class="logo">
+    <img src="{{ url_for('static', filename='images/logo-removebg-preview.png') }}" alt="CodeQuest Logo">
+  </div>
+      <h2>Criar Conta</h2>
+      <p>Preencha os dados para começar sua jornada</p>
+    </div>
+
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+      {% if mensagens %}
+        {% for categoria, msg in mensagens %}
+          <div class="flash-message {{ categoria }}">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <div class="input-group">
+        <i data-feather="user" class="input-icon"></i>
+        <input type="text" id="nome" name="nome" class="input-field" placeholder="Seu nome completo" required />
+      </div>
+
+      <div class="input-group">
+        <i data-feather="mail" class="input-icon"></i>
+        <input type="email" id="email" name="email" class="input-field" placeholder="exemplo@email.com" required />
+      </div>
+
+      <div class="input-group">
+        <i data-feather="lock" class="input-icon"></i>
+        <input type="password" id="senha" name="senha" class="input-field" placeholder="Mínimo 6 caracteres" required />
+        <i data-feather="eye" id="togglePassword"></i>
+      </div>
+
+      <div class="strength-meter-container">
+        <div class="strength-bar-track">
+          <div id="passwordStrengthBar" class="strength-bar-fill"></div>
+        </div>
+        <span id="passwordStrengthText" class="strength-text"></span>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+
+    <div class="link-container">
+      <p>Já tem uma conta? <a href="{{ url_for('routes.login') }}">Voltar ao login</a></p>
+    </div>
+  </div>
+
+  <script defer src="{{ url_for('static', filename='JS/cadastro.js') }}"></script>
+</body>
+</html>

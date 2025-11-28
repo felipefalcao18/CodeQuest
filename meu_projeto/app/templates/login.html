@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login – CodeQuest</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/login.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  
+</head>
+<body>
+   <button id="toggleTheme" class="btn-theme" aria-label="Alternar tema">
+  <span id="themeIcon">🌙</span>
+</button>
+
+  <div class="login-container">
+    <div class="login-header">
+       <div class="logo">
+         <img src="{{ url_for('static', filename='images/logo-removebg-preview.png') }}" alt="CodeQuest Logo">
+       </div>
+      <h2>Login</h2>
+      <p>🚀Continue sua jornada de aprendizado</p>
+    </div>
+
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+      {% if mensagens %}
+        {% for categoria, msg in mensagens %}
+          <div class="flash-messages {{ categoria }}">
+            {{ msg }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="">
+      <div class="input-group">
+        <i data-feather="mail" class="input-icon"></i>
+        <input type="email" id="email" name="email" class="input-field" placeholder="seu@email.com" required />
+      </div>
+
+      <div class="input-group">
+        <i data-feather="lock" class="input-icon"></i>
+        <input type="password" id="senha" name="senha" class="input-field" placeholder="Sua senha" required />
+        <i data-feather="eye" id="togglePassword"></i>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+
+    <div class="links-container">
+      <a href="{{ url_for('routes.cadastrar_usuario') }}">Criar nova conta</a>
+      <span class="divider">|</span>
+      <a href="{{ url_for('routes.esqueci_senha') }}">Esqueci minha senha</a>
+    </div>
+   
+
+  </div>
+
+  <script defer src="{{ url_for('static', filename='JS/login.js') }}"></script>
+
+</body>
+</html>

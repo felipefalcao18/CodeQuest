@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/respostas.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+    <title>Respostas - {{ pergunta.titulo }} | CodeQuest</title>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <div class="header-container">
+        <h1>💬 Respostas da Pergunta</h1>
+    </div>
+
+    <!-- Card da Pergunta -->
+    <div class="pergunta-container">
+        <div class="pergunta-header">
+            <span class="pergunta-icon">💡</span>
+            <h2 class="pergunta-titulo">{{ pergunta.titulo }}</h2>
+        </div>
+        
+        <div class="pergunta-meta">
+            <span class="meta-item">
+                <span>👤</span>
+                <span>Usuário {{ pergunta.usuario_id }}</span>
+            </span>
+            {% if pergunta.categoria %}
+            <span class="meta-item">
+                <span>📂</span>
+                <span>{{ pergunta.categoria }}</span>
+            </span>
+            {% endif %}
+            {% if pergunta.dificuldade %}
+            <span class="meta-item">
+                <span>⚡</span>
+                <span>{{ pergunta.dificuldade|capitalize }}</span>
+            </span>
+            {% endif %}
+            {% if pergunta.criado_em %}
+            <span class="meta-item">
+                <span>📅</span>
+                <span>{{ pergunta.criado_em }}</span>
+            </span>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Botões de Ação -->
+    <div class="btn-container">
+        <a href="{{ url_for('routes.adicionar_resposta', pergunta_id=pergunta.id) }}" class="btn-adicionar">
+            Adicionar Resposta
+        </a>
+        <a href="{{ url_for('routes.listar_perguntas') }}" class="btn-voltar">
+            Voltar para perguntas
+        </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Seção de Respostas -->
+    <div class="respostas-section">
+        <div class="section-header">
+            <h3 class="section-title">Respostas</h3>
+            {% if respostas %}
+            <span class="respostas-count">{{ respostas|length }} resposta{% if respostas|length != 1 %}s{% endif %}</span>
+            {% endif %}
+        </div>
+
+        {% if respostas %}
+            {% for resposta in respostas %}
+            <article class="resposta">
+                <div class="resposta-header">
+                    <div class="autor">
+                        {{ resposta.usuario.nome if resposta.usuario else 'Usuário ' + resposta.usuario_id|string }}
+                    </div>
+                    {% if resposta.criado_em %}
+                    <div class="resposta-date">
+                        {{ resposta.criado_em }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="conteudo">{{ resposta.conteudo }}</div>
+            </article>
+            {% endfor %}
+        {% else %}
+            <div class="empty-state">
+                <h3>Nenhuma resposta ainda</h3>
+                <p>Seja o primeiro a compartilhar seu conhecimento<br>e ajudar outros desenvolvedores!</p>
+                <a href="{{ url_for('routes.adicionar_resposta', pergunta_id=pergunta.id) }}" class="empty-cta">
+                    ✍️ Escrever primeira resposta
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Botão Voltar (rodapé) -->
+    <div style="margin-top: 48px; text-align: center;">
+        <a href="{{ url_for('routes.listar_perguntas') }}" class="btn-voltar">
+            Voltar para perguntas
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard — CodeQuest</title>
+   <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/dashboard.css') }}">
+
+</head>
+
+<body>
+<header class="nav">
+  <div class="wrap">
+    <div class="logo">
+      <a href="{{ url_for('routes.dashboard') }}" class="logo-link" title="Ir para o Dashboard">
+        <img src="{{ url_for('static', filename='images/logo-removebg-preview.png') }}" alt="CodeQuest Logo">
+      </a>
+    </div>
+
+    <button class="nav-toggle" aria-label="Abrir menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav-links" aria-label="menu principal">
+      <a href="/dashboard" class="active">Início</a>
+      <a href="/perguntas">Perguntas & Respostas</a>
+      <a href="/quiz">Quiz</a>
+      <a href="/cursos">Cursos</a>
+      <a href="/sobre">Sobre nós</a>
+      <a href="/ranking">Ranking</a>
+      <a href="/perfil">Perfil</a>
+      <a class="cta" href="/logout">Sair</a>
+
+      <div class="theme-toggle">
+        <input type="checkbox" id="dark-mode-toggle"
+               aria-label="Alternar entre modo claro e modo escuro"/>
+        <label for="dark-mode-toggle" class="slider"></label>
+        <span class="mode-label">Claro</span>
+      </div>
+    </nav>
+  </div>
+</header>
+
+
+  <main class="container" id="app">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          {% for category, message in messages %}
+            <div class="flash-message {% if category == 'success' %}flash-success{% else %}flash-default{% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Quick Stats Row -->
+    <section class="quick-stats">
+      <div class="quick-stat" style="--stat-color: var(--accent)">
+        <span class="icon">📚</span>
+        <div class="number">{{ total_perguntas }}</div>
+        <div class="label">Total de Perguntas do Site</div>
+      </div>
+      <div class="quick-stat" style="--stat-color: var(--success)">
+        <span class="icon">💬</span>
+        <div class="number">{{ total_respostas }}</div>
+        <div class="label">Total de Respostas do Site</div>
+      </div>
+    <div class="quick-stat" style="--stat-color: var(--warning)">
+  <span class="icon">🏆</span>
+  <div class="number" id="conquistas-count">
+    {{ usuario.conquistas|length }}
+  </div>
+  <div class="label">Suas Conquistas</div>
+</div>
+      <div class="quick-stat" style="--stat-color: var(--info)">
+        <span class="icon">🎯</span>
+        <div class="number" id="quiz-count">{{ total_quiz_feitos }}</div>
+        <div class="label">N° de Quizzes Feitos</div>
+      </div>
+    </section>
+
+    <!-- Main Hero Section -->
+    <section class="hero">
+      <div class="welcome">
+        <h1>Olá, {{ usuario.nome }}! 👋</h1>
+        <p>
+          Bem-vindo ao seu painel de controle! Aqui você pode acompanhar seu progresso,
+          criar conteúdo, participar de quizzes e gerenciar sua experiência de aprendizado.
+        </p>
+
+        <div class="quick-actions">
+          <a href="/nova-pergunta" class="action-btn btn-primary">
+            <span>➕</span>
+            Nova Pergunta
+          </a>
+          <a href="/quiz" class="action-btn btn-secondary">
+            <span>🎮</span>
+            Fazer Quiz
+          </a>
+          <a href="/perguntas" class="action-btn btn-success">
+            <span>🔍</span>
+            Explorar
+          </a>
+        </div>
+      </div>
+
+     <!-- Substitua o card "Sua Pontuação" existente por este -->
+<div class="stat-card" style="--gradient: linear-gradient(135deg, var(--accent), #2563eb)">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3>💯 Sua Pontuação</h3>
+  </div>
+  
+  <div class="stat-number" id="user-score">
+    <span>{{ user_score }}</span> 
+    <span style="font-size: 16px;">pts</span>
+  </div>
+  
+  <!-- Badge de Nível -->
+  <button onclick="abrirModalNiveis()" class="nivel-badge nivel-badge-button">
+  <span class="nivel-icone">{{ nivel_atual.icone }}</span>
+  <span class="nivel-texto">{{ nivel_atual.titulo }} (Nível {{ nivel_atual.nivel }})</span>
+  <span style="margin-left: 4px; font-size: 10px;">ℹ️</span>
+</button>
+  
+  <!-- Informação do Próximo Nível -->
+  {% if proximo_nivel.pontos > nivel_atual.pontos %}
+  <div class="stat-trend" style="margin-top: 12px; margin-bottom: 8px;">
+    📊 Próximo nível: <strong>{{ proximo_nivel.titulo }}</strong>
+    <br>
+    <span style="font-size: 11px; opacity: 0.8;">
+      Faltam {{ proximo_nivel.pontos - user_score }} pontos
+    </span>
+  </div>
+  {% else %}
+  <div class="stat-trend" style="margin-top: 12px; margin-bottom: 8px;">
+    🏆 <strong>Nível Máximo Atingido!</strong>
+  </div>
+  {% endif %}
+  
+  <!-- Barra de Progresso -->
+  <div class="progress-bar" style="margin-top: 16px;">
+    <div class="progress-fill" 
+         id="progress-pontuacao" 
+         data-porcentagem="{{ porcentagem_nivel }}"
+         style="width: 0%;">
+    </div>
+  </div>  
+  
+  <!-- Porcentagem do Progresso -->
+  <div style="font-size: 12px; color: rgba(255,255,255,0.8); 
+              margin-top: 8px; text-align: center;
+              font-weight: bold;">
+    {{ porcentagem_nivel }}% completado
+  </div>
+  
+  <!-- Botão para ver detalhes -->
+  <div style="text-align: center; margin-top: 16px;">
+    <button onclick="abrirModalPontuacao()" 
+            class="ver-detalhes-btn"
+            style="background: var(--gradient, var(--accent)); border: none; 
+                   padding: 10px 20px; border-radius: 8px; color: white; 
+                   font-size: 13px; font-weight: 600; cursor: pointer; 
+                   transition: all 0.3s ease; width: 100%;">
+      📊 Ver Detalhes Completos
+    </button>
+  </div>
+</div>
+
+
+<div id="niveisModal" class="modal">
+  <div class="modal-content modal-niveis">
+    <span class="modal-close" onclick="fecharModalNiveis()">&times;</span>
+    
+    <div class="modal-header-niveis">
+      <h3>🎖️ Sistema de Níveis</h3>
+      <p>Sua jornada de aprendizado no CodeQuest</p>
+    </div>
+
+    <!-- Pontuação Atual -->
+    <div class="pontuacao-atual-box">
+      <div class="pontuacao-label">Sua Pontuação Atual</div>
+      <div class="pontuacao-valor">{{ user_score }}</div>
+      <div class="pontuacao-nivel">
+        {{ nivel_atual.icone }} {{ nivel_atual.titulo }} - Nível {{ nivel_atual.nivel }}
+      </div>
+    </div>
+
+    <!-- Lista de Todos os Níveis -->
+    <div class="niveis-lista">
+      
+      <!-- Nível 1: Iniciante -->
+      <div class="nivel-item {% if nivel_atual.nivel == 1 %}nivel-atual{% elif user_score >= 0 %}nivel-completo{% endif %}">
+        <div class="nivel-content">
+          <div class="nivel-icone-grande">🌱</div>
+          <div class="nivel-info">
+            <div class="nivel-header">
+              <h4>Iniciante</h4>
+              {% if nivel_atual.nivel == 1 %}
+                <span class="badge badge-success">Nível Atual</span>
+              {% elif user_score >= 0 %}
+                <span class="nivel-check">✓</span>
+              {% endif %}
+            </div>
+            <p class="nivel-requisito">Nível 1 • A partir de 0 pontos</p>
+            <div class="nivel-descricao">
+              Bem-vindo ao CodeQuest! Todo grande programador começa aqui.
+            </div>
+          </div>
+          <div class="nivel-pontos">
+            <div class="nivel-pontos-valor">0</div>
+            <div class="nivel-pontos-label">pontos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nível 2: Aprendiz -->
+      <div class="nivel-item {% if nivel_atual.nivel == 2 %}nivel-atual{% elif user_score >= 500 %}nivel-completo{% endif %}">
+        <div class="nivel-content">
+          <div class="nivel-icone-grande">📚</div>
+          <div class="nivel-info">
+            <div class="nivel-header">
+              <h4>Aprendiz</h4>
+              {% if nivel_atual.nivel == 2 %}
+                <span class="badge badge-success">Nível Atual</span>
+              {% elif user_score >= 500 %}
+                <span class="nivel-check">✓</span>
+              {% elif user_score < 500 %}
+                <span class="badge badge-warning">🔒 Bloqueado</span>
+              {% endif %}
+            </div>
+            <p class="nivel-requisito">Nível 2 • A partir de 500 pontos</p>
+            <div class="nivel-descricao">
+              Você está progredindo! Continue estudando e praticando.
+            </div>
+            {% if user_score < 500 %}
+              <div class="nivel-faltam">Faltam {{ 500 - user_score }} pontos</div>
+            {% endif %}
+          </div>
+          <div class="nivel-pontos">
+            <div class="nivel-pontos-valor">500</div>
+            <div class="nivel-pontos-label">pontos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nível 3: Intermediário -->
+      <div class="nivel-item {% if nivel_atual.nivel == 3 %}nivel-atual{% elif user_score >= 1000 %}nivel-completo{% endif %}">
+        <div class="nivel-content">
+          <div class="nivel-icone-grande">🎓</div>
+          <div class="nivel-info">
+            <div class="nivel-header">
+              <h4>Intermediário</h4>
+              {% if nivel_atual.nivel == 3 %}
+                <span class="badge badge-success">Nível Atual</span>
+              {% elif user_score >= 1000 %}
+                <span class="nivel-check">✓</span>
+              {% elif user_score < 1000 %}
+                <span class="badge badge-warning">🔒 Bloqueado</span>
+              {% endif %}
+            </div>
+            <p class="nivel-requisito">Nível 3 • A partir de 1.000 pontos</p>
+            <div class="nivel-descricao">
+              Ótimo trabalho! Você domina os conceitos básicos.
+            </div>
+            {% if user_score < 1000 %}
+              <div class="nivel-faltam">Faltam {{ 1000 - user_score }} pontos</div>
+            {% endif %}
+          </div>
+          <div class="nivel-pontos">
+            <div class="nivel-pontos-valor">1K</div>
+            <div class="nivel-pontos-label">pontos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nível 4: Avançado -->
+      <div class="nivel-item {% if nivel_atual.nivel == 4 %}nivel-atual{% elif user_score >= 2000 %}nivel-completo{% endif %}">
+        <div class="nivel-content">
+          <div class="nivel-icone-grande">⭐</div>
+          <div class="nivel-info">
+            <div class="nivel-header">
+              <h4>Avançado</h4>
+              {% if nivel_atual.nivel == 4 %}
+                <span class="badge badge-success">Nível Atual</span>
+              {% elif user_score >= 2000 %}
+                <span class="nivel-check">✓</span>
+              {% elif user_score < 2000 %}
+                <span class="badge badge-warning">🔒 Bloqueado</span>
+              {% endif %}
+            </div>
+            <p class="nivel-requisito">Nível 4 • A partir de 2.000 pontos</p>
+            <div class="nivel-descricao">
+              Impressionante! Você está entre os melhores.
+            </div>
+            {% if user_score < 2000 %}
+              <div class="nivel-faltam">Faltam {{ 2000 - user_score }} pontos</div>
+            {% endif %}
+          </div>
+          <div class="nivel-pontos">
+            <div class="nivel-pontos-valor">2K</div>
+            <div class="nivel-pontos-label">pontos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nível 5: Expert -->
+      <div class="nivel-item {% if nivel_atual.nivel == 5 %}nivel-atual{% elif user_score >= 5000 %}nivel-completo{% endif %}">
+        <div class="nivel-content">
+          <div class="nivel-icone-grande">🏆</div>
+          <div class="nivel-info">
+            <div class="nivel-header">
+              <h4>Expert</h4>
+              {% if nivel_atual.nivel == 5 %}
+                <span class="badge badge-success">Nível Atual</span>
+              {% elif user_score >= 5000 %}
+                <span class="nivel-check">✓</span>
+              {% elif user_score < 5000 %}
+                <span class="badge badge-warning">🔒 Bloqueado</span>
+              {% endif %}
+            </div>
+            <p class="nivel-requisito">Nível 5 • A partir de 5.000 pontos</p>
+            <div class="nivel-descricao">
+              Fantástico! Você é um verdadeiro expert.
+            </div>
+            {% if user_score < 5000 %}
+              <div class="nivel-faltam">Faltam {{ 5000 - user_score }} pontos</div>
+            {% endif %}
+          </div>
+          <div class="nivel-pontos">
+            <div class="nivel-pontos-valor">5K</div>
+            <div class="nivel-pontos-label">pontos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nível 6: Mestre (Máximo) -->
+      <div class="nivel-item nivel-mestre {% if nivel_atual.nivel == 6 %}nivel-atual{% elif user_score >= 10000 %}nivel-completo{% endif %}">
+        <div class="nivel-content">
+          <div class="nivel-icone-grande">👑</div>
+          <div class="nivel-info">
+            <div class="nivel-header">
+              <h4>Mestre</h4>
+              {% if nivel_atual.nivel == 6 %}
+                <span class="badge badge-warning badge-mestre">⭐ Nível Máximo</span>
+              {% elif user_score >= 10000 %}
+                <span class="nivel-check nivel-check-gold">✓</span>
+              {% elif user_score < 10000 %}
+                <span class="badge badge-warning">🔒 Bloqueado</span>
+              {% endif %}
+            </div>
+            <p class="nivel-requisito">Nível 6 • A partir de 10.000 pontos</p>
+            <div class="nivel-descricao">
+              Lendário! O nível máximo do CodeQuest. 👑
+            </div>
+            {% if user_score < 10000 %}
+              <div class="nivel-faltam">Faltam {{ 10000 - user_score }} pontos</div>
+            {% endif %}
+          </div>
+          <div class="nivel-pontos nivel-pontos-gold">
+            <div class="nivel-pontos-valor">10K</div>
+            <div class="nivel-pontos-label">pontos</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Dica de Progresso -->
+    <!-- Dica de Progresso -->
+    <div class="dica-progresso">
+      <div class="dica-content">
+        <span class="dica-icone">💡</span>
+        <div>
+          <strong>Dica:</strong>
+          <span>
+            Ganhe pontos nos quizzes: 🟢 Fácil (+5), 🟡 Médio (+10), 🔴 Difícil (+15) 
+            e desbloqueando conquistas 🏆 (+20)!
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer-niveis">
+      <button onclick="fecharModalNiveis()" class="btn-fechar-modal">
+        Entendi! 🚀
+      </button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+      <div class="stat-card" style="--gradient: linear-gradient(135deg, var(--success), #059669)">
+  <h3>✅Taxa de Acerto</h3>
+  <div class="stat-number" id="accuracy-rate">
+    <span>{{ accuracy_rate }}</span>
+    <span style="font-size: 16px;">%</span>
+  </div>
+  <div class="stat-trend">Baseado nos quizzes</div>
+</div>
+
+       <div class="stat-card" style="--gradient: linear-gradient(135deg, var(--warning), #f59e0b)">
+          <h3>⚡Último Quiz Realizado</h3>
+          
+          {% if ultimo_quiz %}
+            <div class="quiz-score">
+              <span>{{ ultimo_quiz.acertos }}</span> / {{ ultimo_quiz.total }} acertos
+            </div>
+            <div class="stat-trend">
+              Em {{ ultimo_quiz.categoria or 'Geral' }} - {{ ultimo_quiz.criado_em.strftime('%d/%m/%Y') }}
+            </div>
+          {% else %}
+            <div class="quiz-score-placeholder">
+              <p>Você ainda não fez nenhum quiz.</p>
+            </div>
+          {% endif %}
+
+        </div>
+    </section>
+
+    <!-- Main Dashboard Features -->
+    <section class="dashboard-grid">
+      <div class="feature-card" style="--feature-color: var(--accent)">
+  <div class="feature-header">
+    <div class="feature-icon">📊</div>
+    <h3>Estatísticas dos Quizes realizados</h3>
+  </div>
+  <p>Acompanhe seu desempenho em diferentes categorias e níveis de dificuldade.</p>
+  <div class="feature-actions">
+    <a href="#" class="feature-btn primary" onclick="showStats('dificuldade')">🧩Ver por Dificuldade</a>
+    <a href="#" class="feature-btn" onclick="showStats('categoria')">🗂️Ver por Categoria</a>
+  </div>
+</div>
+
+      <div class="feature-card" style="--feature-color: var(--warning)">
+  <div class="feature-header">
+    <div class="feature-icon">🚀</div>
+    <h3>Metas Semanais</h3>
+  </div>
+  <p>Defina objetivos e acompanhe seu progresso semanal de estudos.</p>
+  
+  <div id="metas-container" style="margin: 16px 0;">
+    <!-- Pergunta Meta -->
+    <div class="meta-item" style="margin-bottom: 12px;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span style="font-size: 13px; color: var(--muted);">📝 Perguntas criadas</span>
+        <span style="font-size: 13px; font-weight: 600;">
+          <span id="perguntas-atual">0</span>/<span id="perguntas-meta">5</span>
+        </span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="perguntas-progress" style="width: 0%"></div>
+      </div>
+    </div>
+    
+    <!-- Respostas Meta -->
+    <div class="meta-item" style="margin-bottom: 12px;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span style="font-size: 13px; color: var(--muted);">💬 Respostas enviadas</span>
+        <span style="font-size: 13px; font-weight: 600;">
+          <span id="respostas-atual">0</span>/<span id="respostas-meta">5</span>
+        </span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="respostas-progress" style="width: 0%"></div>
+      </div>
+    </div>
+    
+    <!-- Quiz Meta -->
+    <div class="meta-item">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span style="font-size: 13px; color: var(--muted);">🎯 Quizzes completados</span>
+        <span style="font-size: 13px; font-weight: 600;">
+          <span id="quizzes-atual">0</span>/<span id="quizzes-meta">3</span>
+        </span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="quizzes-progress" style="width: 0%"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="feature-actions">
+    <button class="feature-btn primary" onclick="abrirModalMetas()">⚙️ Configurar Metas</button>
+    <button class="feature-btn" onclick="resetarMetas()">🔄 Resetar</button>
+  </div>
+</div>
+
+<!-- Modal para Configurar Metas -->
+<div id="metasModal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="fecharModalMetas()">&times;</span>
+    <h3>⚙️ Configurar Metas Semanais</h3>
+    <p>Defina quantas atividades você quer completar esta semana:</p>
+    
+    <form id="metas-form" style="margin-top: 20px;">
+      <div style="margin-bottom: 20px;">
+        <label for="meta-perguntas" style="display: block; margin-bottom: 8px; color: var(--text); font-weight: 600;">
+          📝 Perguntas a criar:
+        </label>
+        <input type="number" id="meta-perguntas" min="1" max="50" value="5" 
+               style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); 
+                      background: var(--bg); color: var(--text); font-size: 16px;">
+      </div>
+      
+      <div style="margin-bottom: 20px;">
+        <label for="meta-respostas" style="display: block; margin-bottom: 8px; color: var(--text); font-weight: 600;">
+          💬 Respostas a enviar:
+        </label>
+        <input type="number" id="meta-respostas" min="1" max="50" value="5" 
+               style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); 
+                      background: var(--bg); color: var(--text); font-size: 16px;">
+      </div>
+      
+      <div style="margin-bottom: 20px;">
+        <label for="meta-quizzes" style="display: block; margin-bottom: 8px; color: var(--text); font-weight: 600;">
+          🎯 Quizzes a completar:
+        </label>
+        <input type="number" id="meta-quizzes" min="1" max="30" value="3" 
+               style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); 
+                      background: var(--bg); color: var(--text); font-size: 16px;">
+      </div>
+      
+      <div style="display: flex; gap: 12px; justify-content: flex-end;">
+        <button type="button" onclick="fecharModalMetas()" 
+                style="padding: 10px 20px; border-radius: 8px; border: 1px solid var(--border); 
+                       background: transparent; color: var(--text); font-weight: 600; cursor: pointer;">
+          Cancelar
+        </button>
+        <button type="submit" 
+                style="padding: 10px 20px; border-radius: 8px; border: none; 
+                       background: var(--accent); color: white; font-weight: 600; cursor: pointer;">
+          Salvar Metas
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Adicione este modal após o modal de metas no dashboard.html -->
+
+<!-- Modal de Detalhes de Pontuação -->
+<div id="pontuacaoModal" class="modal">
+  <div class="modal-content" style="max-width: 700px;">
+    <span class="modal-close" onclick="fecharModalPontuacao()">&times;</span>
+    
+    <div style="text-align: center; margin-bottom: 24px;">
+      <h3 style="margin: 0 0 8px 0; font-size: 24px; color: var(--text);">
+        💯 Sistema de Pontuação
+      </h3>
+      <p style="color: var(--muted); margin: 0;">
+        Veja como seus pontos são calculados
+      </p>
+    </div>
+
+    <!-- Pontuação Total -->
+    <div style="background: linear-gradient(135deg, var(--accent), #2563eb); 
+                padding: 20px; border-radius: 12px; text-align: center; 
+                margin-bottom: 24px; color: white;">
+      <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">
+        Sua Pontuação Total
+      </div>
+      <div style="font-size: 48px; font-weight: 800;" id="pontos-totais-modal">
+        0
+      </div>
+      <div style="font-size: 13px; opacity: 0.8; margin-top: 8px;">
+        pontos acumulados
+      </div>
+    </div>
+
+    <!-- Tabela de Detalhes -->
+    <div id="pontuacao-loading" style="text-align: center; padding: 20px;">
+      <p style="color: var(--muted);">Carregando detalhes...</p>
+    </div>
+
+    <div id="pontuacao-detalhes" style="display: none;">
+      <table class="stats-table" style="margin-bottom: 20px;">
+        <thead>
+          <tr>
+            <th>Atividade</th>
+            <th style="text-align: center;">Quantidade</th>
+            <th style="text-align: center;">Valor</th>
+            <th style="text-align: right;">Pontos</th>
+          </tr>
+        </thead>
+        <tbody id="pontuacao-tbody">
+          <!-- Preenchido via JavaScript -->
+        </tbody>
+      </table>
+
+    <!-- Tabela de Valores -->
+<!-- Tabela de Valores -->
+<div style="background: var(--accent-light); padding: 16px; 
+            border-radius: 12px; border: 1px solid var(--border);">
+  <h4 style="margin: 0 0 12px 0; font-size: 14px; color: var(--text); 
+             display: flex; align-items: center; gap: 8px;">
+    <span>📊</span> Como ganhar pontos
+  </h4>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+              gap: 12px; font-size: 13px; color: var(--text);">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 18px;">🟢</span>
+      <div>
+        <strong>Quiz Fácil:</strong><br>
+        <span style="color: var(--muted);">+5 pontos/acerto</span>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 18px;">🟡</span>
+      <div>
+        <strong>Quiz Médio:</strong><br>
+        <span style="color: var(--muted);">+10 pontos/acerto</span>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 18px;">🔴</span>
+      <div>
+        <strong>Quiz Difícil:</strong><br>
+        <span style="color: var(--muted);">+15 pontos/acerto</span>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 18px;">🏆</span>
+      <div>
+        <strong>Conquista:</strong><br>
+        <span style="color: var(--muted);">+20 pontos cada</span>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <button onclick="fecharModalPontuacao()" 
+        style="padding: 12px 24px; border-radius: 8px; border: none; 
+               background: var(--accent); color: white; font-weight: 600; 
+               cursor: pointer; font-size: 14px; transition: all 0.3s ease;">
+  Entendi! 👍
+</button>
+
+<style>
+button[onclick="fecharModalPontuacao()"]:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+button[onclick="fecharModalPontuacao()"]:active {
+  transform: translateY(0);
+}
+</style>
+    </div>
+  </div>
+</div>
+
+      <div class="feature-card" style="--feature-color: var(--info)">
+        <div class="feature-header">
+          <div class="feature-icon">🏆</div>
+          <h3>Sistema de Conquistas</h3>
+        </div>
+        <p>Desbloqueie conquistas completando quizes e desbloqueando conquistas.</p>
+        <div style="margin: 16px 0;">
+          <span class="badge badge-success">🔥 Primeira Resposta</span>
+          <span class="badge badge-warning" style="margin-left: 8px;">⭐ Quiz Master</span>
+        </div>
+        <div class="feature-actions">
+          <a href="/perfil" class="feature-btn primary">🏅Ver Conquistas</a>
+        </div>
+      </div>
+    </section>
+
+    <div id="statsModal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <h3 id="stats-modal-title">Seu Desempenho</h3>
+    <p id="stats-modal-subtitle">Aqui está sua taxa de acerto nos quizzes que você já fez.</p>
+    <table class="stats-table">
+      <thead>
+        <tr>
+          <th id="stats-header-col1">Categoria</th>
+          <th>Acertos / Total</th>
+          <th>Taxa de Acerto</th>
+        </tr>
+      </thead>
+      <tbody id="stats-table-body">
+      </tbody>
+    </table>
+  </div>
+</div>
+
+    <footer>
+      © {{ ano_atual }} — CodeQuest. Desenvolvido para facilitar o aprendizado.
+    </footer>
+  </main>
+
+  <script defer src="{{ url_for('static', filename='JS/dashboard.js') }}"></script>
+
+
+</body>
+</html>

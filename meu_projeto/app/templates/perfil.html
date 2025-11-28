@@ -1,0 +1,340 @@
+<html lang="pt-br" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil- CodeQuest</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/perfil.css') }}" />
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+<!-- Botão de alternância de tema -->
+<button id="toggleTheme" class="btn-theme" aria-label="Alternar tema">
+  <span id="themeIcon">🌙</span>
+</button>
+
+<div class="container" style="padding-bottom: 0;">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div style="display:flex; flex-direction:column; gap:8px; margin-bottom: 20px;">
+        {% for category, message in messages %}
+          <div class="flash-message {% if category == 'success' %}flash-success{% else %}flash-default{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+</div>
+
+{% if modo == 'editar' %}
+  <div class="container">
+    <h2>Editar Perfil</h2>
+    <div class="form-container">
+      <form method="POST" enctype="multipart/form-data">
+        
+        <!-- Upload de foto de perfil -->
+        <div class="photo-upload-section">
+          <div class="current-photo">
+            {% if usuario.foto_perfil %}
+              <img src="{{ url_for('static', filename='uploads/' + usuario.foto_perfil) }}" alt="Foto atual" class="preview-photo">
+            {% else %}
+              <div class="preview-photo no-photo" aria-hidden="true">
+                <i data-feather="user" style="width: 48px; height: 48px;"></i>
+              </div>
+            {% endif %}
+          </div>
+          <div class="photo-upload-controls">
+            <label for="foto_perfil" class="file-label" tabindex="0">
+              <i data-feather="camera"></i>
+              Alterar Foto
+            </label>
+            <input type="file" id="foto_perfil" name="foto_perfil" accept="image/*" style="display: none;" />
+            <p class="file-hint">JPG, PNG ou GIF (máx. 5MB)</p>
+          </div>
+        </div>
+
+        <!-- Upload de capa - MELHORADO -->
+        <div class="cover-upload-section">
+          <label for="capa_perfil" class="file-label" tabindex="0">
+            <i data-feather="image"></i>
+            {% if usuario.capa_perfil %}Alterar Capa{% else %}Adicionar Capa{% endif %}
+          </label>
+
+          <input 
+              type="file" 
+              id="capa_perfil" 
+              name="capa_perfil" 
+              accept="image/*"
+              style="display: none;"
+          />
+
+          <p class="file-hint">Recomendado: 1200x300px • JPG, PNG ou GIF (máx. 5MB)</p>
+
+          <!-- Pré-visualização da capa -->
+          <div class="cover-preview-wrapper">
+              {% if usuario.capa_perfil %}
+                <img src="{{ url_for('static', filename='uploads/' + usuario.capa_perfil) }}" 
+                     id="previewCapa" 
+                     class="cover-preview"
+                     alt="Capa atual">
+              {% else %}
+                <div class="cover-empty" id="previewCapa" onclick="document.getElementById('capa_perfil').click()">
+                  <i data-feather="image"></i>
+                  <span>Clique para adicionar uma capa</span>
+                </div>
+              {% endif %}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <i data-feather="user" class="label-icon"></i>
+            Nome
+          </label>
+          <input type="text" name="nome" value="{{ usuario.nome }}" required />
+        </div>
+
+        <div class="form-group">
+          <label>
+            <i data-feather="lock" class="label-icon"></i>
+            Nova Senha
+          </label>
+          <div class="password-input-wrapper">
+            <input type="password" id="senha" name="senha" placeholder="Deixe em branco para manter a senha atual" />
+            <i data-feather="eye" id="togglePassword" class="toggle-password-icon"></i>
+          </div>
+
+          <div id="passwordStrength" class="password-strength" style="display: none;">
+            <div class="strength-bar">
+              <div id="strengthBar" class="strength-bar-fill"></div>
+            </div>
+            <span id="strengthText" class="strength-text">Força da senha</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <i data-feather="edit-3" class="label-icon"></i>
+            Bio
+          </label>
+          <textarea name="bio" rows="4" placeholder="Conte um pouco sobre você...">{{ usuario.bio }}</textarea>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="button primary">
+            <i data-feather="check"></i>
+            Salvar Alterações
+          </button>
+          <a href="{{ url_for('routes.perfil', modo='visualizar') }}" class="button secondary">
+            <i data-feather="x"></i>
+            Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% else %}
+  <div class="container">
+    <div class="profile-card">
+
+
+      <!-- CAPA  -->
+
+     {% if usuario.capa_perfil %}
+  {% set capa_url = url_for('static', filename='uploads/' ~ usuario.capa_perfil) %}
+  <div class="profile-cover" style="background-image: url('{{ capa_url }}');"></div>
+{% else %}
+  <div class="profile-cover no-cover"></div>
+{% endif %}
+
+      <!-- Cabeçalho do perfil -->
+      <div class="profile-header">
+        <div class="profile-photo-wrapper" onclick="abrirModalFoto()" style="cursor: pointer;">
+          {% if usuario.foto_perfil %}
+            <img src="{{ url_for('static', filename='uploads/' + usuario.foto_perfil) }}" 
+                 alt="{{ usuario.nome }}" 
+                 class="profile-photo"
+                 id="fotoPerfil" />
+          {% else %}
+            <div class="profile-photo no-photo">
+              <i data-feather="user" style="width: 48px; height: 48px;"></i>
+            </div>
+          {% endif %}
+        </div>
+        
+        <div class="profile-info">
+          <h1 class="profile-name">{{ usuario.nome }}</h1>
+          <p class="profile-bio">
+            {{ usuario.bio or "Este usuário ainda não escreveu uma bio." }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Estatísticas -->
+      <div class="profile-stats">
+        <div class="stat-item">
+          <i data-feather="award"></i>
+          <div class="stat-content">
+            <span class="stat-value">{{ usuario.total_conquistas or 0 }}</span>
+            <span class="stat-label">Conquistas</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <i data-feather="help-circle"></i>
+          <div class="stat-content">
+            <span class="stat-value">{{ usuario.total_perguntas or 0 }}</span>
+            <span class="stat-label">Perguntas</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <i data-feather="message-circle"></i>
+          <div class="stat-content">
+            <span class="stat-value">{{ usuario.total_respostas or 0 }}</span>
+            <span class="stat-label">Respostas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conquistas -->
+      <div class="conquistas-section">
+        <div class="section-header">
+          <h3>
+            <i data-feather="trophy"></i>
+            Conquistas
+          </h3>
+        </div>
+        
+        <div class="conquistas-grid">
+          {% if conquistas %}
+            {% for conquista in conquistas %}
+              <div class="conquista-badge" onclick="abrirModal('{{ conquista.titulo }}')">
+                <span class="badge-icon">{{ conquista.icone }}</span>
+                <span class="badge-title">{{ conquista.titulo }}</span>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="empty-state">
+              <i data-feather="inbox"></i>
+              <p>Nenhuma conquista desbloqueada ainda.</p>
+              <small>Continue participando para ganhar conquistas!</small>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div id="userQuestionsSection" class="user-questions-section" style="display: none;">
+        <div class="section-header">
+          <h3><i data-feather="help-circle"></i> Minhas Perguntas</h3>
+          <button class="btn-close" onclick="fecharSecaoPerguntas()" aria-label="Fechar">
+            <i data-feather="x"></i>
+          </button>
+        </div>
+        <div id="userQuestionsList" class="questions-list">
+          </div>
+      </div>
+
+      <div id="userAnswersSection" class="user-answers-section" style="display: none;">
+        <div class="section-header">
+          <h3><i data-feather="message-circle"></i> Minhas Respostas</h3>
+          <button class="btn-close" onclick="fecharSecaoRespostas()" aria-label="Fechar">
+            <i data-feather="x"></i>
+          </button>
+        </div>
+        <div id="userAnswersList" class="answers-list">
+          </div>
+      </div>
+
+      <!-- Botões de ação -->
+      <div class="button-group">
+        <a href="{{ url_for('routes.perfil', modo='editar') }}" class="button primary">
+          <i data-feather="edit-2"></i>
+          Editar Perfil
+        </a>
+        <a href="{{ url_for('routes.dashboard') }}" class="button secondary">
+          <i data-feather="arrow-left"></i>
+          Voltar
+        </a>
+        <button type="button" class="button danger" id="btnAbrirModalExcluir">
+          <i data-feather="trash-2"></i>
+          Excluir Conta
+        </button>
+      </div>
+
+    </div>
+  </div>
+{% endif %}
+
+<!-- Modal para detalhes da conquista -->
+<div id="modalConquista" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal" role="document" tabindex="-1">
+    <button class="modal-close" onclick="fecharModal()" aria-label="Fechar modal de conquista">
+      <i data-feather="x"></i>
+    </button>
+    
+    <div class="modal-header">
+      <div class="modal-icon" id="modalIcon" aria-hidden="true">🏆</div>
+      <h3 class="modal-title" id="modalTitle">Conquista</h3>
+    </div>
+    
+    <div class="modal-description" id="modalDescription">
+      Descrição da conquista...
+    </div>
+    
+    <div class="modal-requirements">
+      <h4>
+        <i data-feather="target" aria-hidden="true"></i>
+        Requisitos
+      </h4>
+      <p id="modalRequirements">Como desbloquear esta conquista</p>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="button secondary" onclick="fecharModal()" aria-label="Fechar">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para foto ampliada -->
+<div id="modalFoto" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal modal-foto" role="document" tabindex="-1">
+    <button class="modal-close" onclick="fecharModalFoto()" aria-label="Fechar modal de foto">
+      <i data-feather="x"></i>
+    </button>
+    <img id="fotoAmpliada" src="" alt="Foto ampliada" class="foto-ampliada" />
+  </div>
+</div>
+
+<!-- Excluir conta -->
+<div id="modalExcluirConta" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal" role="document" tabindex="-1">
+    <button class="modal-close" id="btnFecharModalExcluir" aria-label="Fechar modal excluir conta">
+      <i data-feather="x"></i>
+    </button>
+
+    <div class="modal-header">
+      <div class="modal-icon" style="color: #e53e3e;" aria-hidden="true;">⚠️</div>
+      <h3 class="modal-title" style="color: #e53e3e;">Excluir Conta</h3>
+    </div>
+
+    <div class="modal-description">
+      <strong>Você tem certeza absoluta?</strong><br />
+      Esta ação é irreversível. Todos os seus dados, incluindo perguntas, respostas, quizzes e conquistas, serão excluídos permanentemente.
+    </div>
+
+    <div class="modal-footer">
+      <button class="button secondary" id="btnCancelarModalExcluir" aria-label="Cancelar exclusão">Cancelar</button>
+      <button class="button danger" id="btnConfirmarExcluir" aria-label="Confirmar exclusão">
+        <i data-feather="trash-2"></i>
+        Sim, excluir minha conta
+      </button>
+    </div>
+  </div>
+</div>
+
+<script defer src="{{ url_for('static', filename='JS/perfil.js') }}"></script>
+
+</body>
+</html>

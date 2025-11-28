@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Perguntas&Respostas — CodeQuest</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/perguntas.css') }}">
+  
+</head>
+<body>
+  <header class="nav">
+  <div class="wrap">
+    <div class="logo">
+      <a href="{{ url_for('routes.dashboard') }}" class="logo-link" title="Ir para o Dashboard">
+        <img src="{{ url_for('static', filename='images/logo-removebg-preview.png') }}" alt="CodeQuest Logo">
+      </a>
+    </div>
+
+      <nav class="nav-links" aria-label="menu principal">
+        <a href="/dashboard">Início</a>
+        <a href="/perguntas" class="active">Perguntas & Respostas</a>
+        <a href="/quiz">Quiz</a>
+        <a href="/cursos">Cursos</a>
+        <a href="/sobre">Sobre nós</a>
+        <a href="/ranking">Ranking</a>
+        <a href="/perfil">Perfil</a>
+        <a class="cta" href="/logout">Sair</a>
+
+        <!-- Switch de Tema -->
+        <div class="theme-toggle">
+          <input
+            type="checkbox"
+            id="dark-mode-toggle"
+            aria-label="Alternar entre modo claro e modo escuro"
+            title="Alternar tema" />
+          <label for="dark-mode-toggle" class="slider"></label>
+          <span class="mode-label">Claro</span>
+        </div>
+      </nav>
+
+    <button class="mobile-toggle" aria-label="Abrir menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+  </header>
+
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          {% for category, message in messages %}
+            <div class="flash-message {% if category == 'success' %}flash-success{% else %}flash-default{% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    <div class="searchbar">
+      <input id="q" placeholder="🔍 Buscar por título ou conteúdo..." oninput="debouncedFetch()" />
+      <select id="categoria" onchange="fetchPerguntas()">
+        <option value="">📂 Todas as categorias</option>
+        <option>Python</option>
+        <option>JavaScript</option>
+        <option>Frontend</option>
+        <option>Banco de Dados</option>
+        <option>Outros</option>
+      </select>
+      <select id="dificuldade" onchange="fetchPerguntas()">
+        <option value="">⚡ Qualquer dificuldade</option>
+        <option value="facil">🟢 Fácil</option>
+        <option value="medio">🟡 Médio</option>
+        <option value="dificil">🔴 Difícil</option>
+      </select>
+      <button class="btn" onclick="location.href='/nova-pergunta'">
+        ➕ Nova pergunta
+      </button>
+    </div>
+
+    <section class="list" id="listaPerguntas">
+      <!-- Exemplo de card -->
+      <div class="qcard">
+        <h3>Qual a diferença entre if/else e switch em Python?</h3>
+        <div class="meta">
+          <strong>UsuárioX</strong> • 
+          <span>📂 Outros</span> • 
+          <span>🟡 Médio</span> • 
+          <span>📅 12/08/2025</span>
+        </div>
+        <p>Gostaria de entender quando usar cada uma dessas estruturas...</p>
+        <div class="btn-actions">
+          <button class="btn-edit btn-small">✏️ Editar</button>
+          <button class="btn-delete btn-small">🗑️ Excluir</button>
+        </div>
+      </div>
+      <!-- /Exemplo -->
+    </section>
+
+    <footer>
+      💡 Dica: Use os filtros para encontrar perguntas específicas mais rapidamente
+    </footer>
+  </main>
+
+  <div id="modal" class="modal" onclick="if(event.target===this) closeModal()">
+    <div class="box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h2 id="modalTitle">Pergunta</h2>
+        <div id="perguntaActions" style="display: none;">
+          <button class="btn-delete" onclick="excluirPergunta()">🗑️ Excluir</button>
+        </div>
+      </div>
+      
+      <div id="modalMeta" class="meta"></div>
+      <div id="modalContent" class="modal-content"></div>
+
+      <div class="answers" id="modalAnswers">
+        <h4>Respostas</h4>
+      </div>
+
+      <form id="respostaForm" onsubmit="enviarResposta(event)" class="response-form">
+        <h5>Sua resposta</h5>
+        <textarea id="respostaTexto" required placeholder="Compartilhe seu conhecimento e ajude outros desenvolvedores..."></textarea>
+        <input type="hidden" id="respostaPerguntaId" />
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">
+            ❌ Fechar
+          </button>
+          <button class="btn" type="submit">
+            📤 Enviar resposta
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script defer src="{{ url_for('static', filename='JS/perguntas.js') }}"></script>
+
+</body>
+</html>

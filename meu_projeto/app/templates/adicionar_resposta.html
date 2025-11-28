@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Adicionar Resposta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/adicionar_resposta.css') }}">
+    
+</head>
+<body>
+    <h1>Adicionar Resposta para: "{{ pergunta.titulo }}"</h1>
+    <form action="{{ url_for('routes.adicionar_resposta', pergunta_id=pergunta.id) }}" method="POST">
+        <label for="conteudo">Conteúdo da Resposta</label>
+        <textarea id="conteudo" name="conteudo" required></textarea>
+
+        <button type="submit">Enviar Resposta</button>
+    </form>
+    <a href="{{ url_for('routes.listar_respostas_por_pergunta', pergunta_id=pergunta.id) }}" class="voltar">← Voltar para respostas</a>
+</body>
+</html>

@@ -1,0 +1,684 @@
+[
+    {
+      "title": "Curso em Vídeo: Python 3 - Mundo 1, 2 e 3",
+      "provider": "YouTube (Curso em Vídeo)",
+      "description": "Curso completo e gratuito de Python com o professor Gustavo Guanabara, cobrindo desde a lógica até orientação a objetos.",
+      "url": "https://www.youtube.com/playlist?list=PLHz_AreHm4dlKP6QQCekuIPky1CiwmdI6",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["python", "lógica", "guanabara", "iniciante"]
+    },
+    {
+      "title": "JavaScript ES6 Essencial",
+      "provider": "Digital Innovation One (DIO)",
+      "description": "Aprenda as principais funcionalidades introduzidas no ES6 e como elas podem te ajudar a escrever um código mais moderno e conciso.",
+      "url": "https://web.dio.me/course/javascript-es6-essencial/learning",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["javascript", "es6", "frontend"]
+    },
+    {
+      "title": "Responsive Web Design Certification",
+      "provider": "freeCodeCamp",
+      "description": "Aprenda HTML e CSS construindo 15 projetos práticos e obtenha uma certificação ao final. Ótimo para construir uma base sólida.",
+      "url": "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+      "level": "beginner",
+      "category": "web",
+      "tags": ["html", "css", "web design", "responsivo"]
+    },
+    {
+      "title": "CS50's Introduction to Computer Science",
+      "provider": "edX (Harvard)",
+      "description": "Um dos cursos de ciência da computação mais famosos do mundo, oferecido por Harvard. Aborda C, Python, SQL, e mais.",
+      "url": "https://www.edx.org/learn/computer-science/harvard-university-cs50-s-introduction-to-computer-science",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["ciência da computação", "harvard", "c", "python"]
+    },
+    {
+      "title": "Introdução à Inteligência Artificial",
+      "provider": "Coursera (IBM)",
+      "description": "Curso da IBM que explica o que é IA, suas aplicações e conceitos, incluindo machine learning, deep learning e redes neurais.",
+      "url": "https://www.coursera.org/learn/introduction-to-ai",
+      "level": "beginner",
+      "category": "ai",
+      "tags": ["ia", "machine learning", "ibm"]
+    },
+    {
+      "title": "Docker for Absolute Beginners",
+      "provider": "YouTube (KodeKloud)",
+      "description": "Um curso prático de 4 horas que ensina tudo o que você precisa saber sobre Docker para começar a usar contêineres.",
+      "url": "https://www.youtube.com/watch?v=pg19Z8LL06w",
+      "level": "intermediate",
+      "category": "cloud",
+      "tags": ["docker", "devops", "containers"]
+    },
+
+    {
+      "title": "Curso em Vídeo: Python 3 - Mundo 1, 2 e 3",
+      "provider": "YouTube (Curso em Vídeo)",
+      "description": "Curso completo e gratuito de Python com o professor Gustavo Guanabara, cobrindo desde a lógica até orientação a objetos.",
+      "url": "https://www.youtube.com/playlist?list=PLHz_AreHm4dlKP6QQCekuIPky1CiwmdI6",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["python", "lógica", "guanabara", "iniciante"]
+    },
+    {
+      "title": "JavaScript ES6 Essencial",
+      "provider": "Digital Innovation One (DIO)",
+      "description": "Aprenda as principais funcionalidades introduzidas no ES6 e como elas podem te ajudar a escrever um código mais moderno e conciso.",
+      "url": "https://web.dio.me/course/javascript-es6-essencial/learning",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["javascript", "es6", "frontend"]
+    },
+    {
+      "title": "Responsive Web Design Certification",
+      "provider": "freeCodeCamp",
+      "description": "Aprenda HTML e CSS construindo 15 projetos práticos e obtenha uma certificação ao final. Ótimo para construir uma base sólida.",
+      "url": "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+      "level": "beginner",
+      "category": "web",
+      "tags": ["html", "css", "web design", "responsivo"]
+    },
+    {
+      "title": "CS50's Introduction to Computer Science",
+      "provider": "edX (Harvard)",
+      "description": "Um dos cursos de ciência da computação mais famosos do mundo, oferecido por Harvard. Aborda C, Python, SQL, e mais.",
+      "url": "https://www.edx.org/learn/computer-science/harvard-university-cs50-s-introduction-to-computer-science",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["ciência da computação", "harvard", "c", "python"]
+    },
+    {
+      "title": "Introdução à Inteligência Artificial",
+      "provider": "Coursera (IBM)",
+      "description": "Curso da IBM que explica o que é IA, suas aplicações e conceitos, incluindo machine learning, deep learning e redes neurais.",
+      "url": "https://www.coursera.org/learn/introduction-to-ai",
+      "level": "beginner",
+      "category": "ai",
+      "tags": ["ia", "machine learning", "ibm"]
+    },
+    {
+      "title": "Docker for Absolute Beginners",
+      "provider": "YouTube (KodeKloud)",
+      "description": "Um curso prático de 4 horas que ensina tudo o que você precisa saber sobre Docker para começar a usar contêineres.",
+      "url": "https://www.youtube.com/watch?v=pg19Z8LL06w",
+      "level": "intermediate",
+      "category": "cloud",
+      "tags": ["docker", "devops", "containers"]
+    },
+    {
+      "title": "Git and GitHub Crash Course For Beginners",
+      "provider": "freeCodeCamp (YouTube)",
+      "description": "Tutorial completo de controle de versão com Git e GitHub, incluindo repositórios, ramificações, merges e pull requests.",
+      "url": "https://www.youtube.com/watch?v=RGOj5yH7evk",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["git", "github", "version control"]
+    },
+    {
+      "title": "The Odin Project",
+      "provider": "The Odin Project",
+      "description": "Currículo de desenvolvimento web full-stack gratuito focado em HTML, CSS, JavaScript, Ruby on Rails e Node.js.",
+      "url": "https://www.theodinproject.com/",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["html", "css", "javascript", "ruby on rails", "full stack"]
+    },
+    {
+      "title": "Google IT Support Professional Certificate",
+      "provider": "Coursera (Google)",
+      "description": "Programa de certificação para iniciantes em suporte de TI cobrindo redes, sistemas operacionais, gerenciamento de sistemas e troubleshooting.",
+      "url": "https://www.coursera.org/professional-certificates/google-it-support",
+      "level": "beginner",
+      "category": "it",
+      "tags": ["it support", "coursera", "google", "certificação"]
+    },
+    {
+      "title": "Full Stack Web Development with React",
+      "provider": "Coursera",
+      "description": "Especialização em front-end, mobile e back-end usando React, React Native e Node.js, com ênfase em projetos práticos.",
+      "url": "https://www.coursera.org/specializations/full-stack-react",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["react", "react native", "node.js", "full stack"]
+    },
+    {
+      "title": "Linux Command Line Basics",
+      "provider": "Udemy",
+      "description": "Aprenda comandos essenciais do Linux e habilidades de linha de comando para administrar servidores e sistemas.",
+      "url": "https://www.udemy.com/course/linux-command-line-tutorial/",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["linux", "bash", "terminal"]
+    },
+    {
+      "title": "Docker Mastery: with Kubernetes +Swarm from a Docker Captain",
+      "provider": "Udemy",
+      "description": "Curso avançado para dominar Docker, Docker Compose, Kubernetes e Docker Swarm do zero ao nível profissional.",
+      "url": "https://www.udemy.com/course/docker-mastery/",
+      "level": "advanced",
+      "category": "cloud",
+      "tags": ["docker", "kubernetes", "swarm", "devops"]
+    },
+
+    {
+      "title": "Curso em Vídeo: HTML5 e CSS3",
+      "provider": "YouTube (Curso em Vídeo)",
+      "description": "Curso completo de HTML5 e CSS3 com Gustavo Guanabara, do básico ao avançado, incluindo projetos práticos.",
+      "url": "https://www.youtube.com/playlist?list=PLHz_AreHm4dkZ9-atkcmcBaMZdmLHft8n",
+      "level": "beginner",
+      "category": "web",
+      "tags": ["html5", "css3", "guanabara", "web design"]
+    },
+    {
+      "title": "Curso em Vídeo: MySQL",
+      "provider": "YouTube (Curso em Vídeo)",
+      "description": "Aprenda banco de dados MySQL do zero com Gustavo Guanabara, incluindo modelagem, consultas e otimização.",
+      "url": "https://www.youtube.com/playlist?list=PLHz_AreHm4dkBs-795Dsgvau_ekxg8g1r",
+      "level": "beginner",
+      "category": "data",
+      "tags": ["mysql", "banco de dados", "sql", "guanabara"]
+    },
+    {
+      "title": "Curso em Vídeo: JavaScript",
+      "provider": "YouTube (Curso em Vídeo)",
+      "description": "Curso completo de JavaScript com Gustavo Guanabara, cobrindo lógica de programação, DOM, objetos e mais.",
+      "url": "https://www.youtube.com/playlist?list=PLHz_AreHm4dlsK3Nr9GVvXCbpQyHQl1o1",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["javascript", "dom", "guanabara", "frontend"]
+    },
+    {
+      "title": "Potência Tech powered by iFood - Desenvolvimento de Jogos",
+      "provider": "Digital Innovation One (DIO)",
+      "description": "Bootcamp gratuito focado em desenvolvimento de jogos com Unity e C#, com certificado reconhecido pelo mercado.",
+      "url": "https://web.dio.me/track/potencia-tech-ifood-desenvolvimento-de-jogos",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["unity", "c#", "jogos", "ifood"]
+    },
+    {
+      "title": "Santander Bootcamp 2024 - Trilha Fullstack",
+      "provider": "Digital Innovation One (DIO)",
+      "description": "Bootcamp completo de desenvolvimento fullstack com Java, Spring Boot, Angular e tecnologias modernas.",
+      "url": "https://web.dio.me/track/santander-bootcamp-2024",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["java", "spring", "angular", "fullstack"]
+    },
+    {
+      "title": "Introdução à Ciência de Dados com Python",
+      "provider": "Udemy (Zurubabel)",
+      "description": "Curso brasileiro gratuito de introdução a Data Science usando Python, Pandas, NumPy e visualização de dados.",
+      "url": "https://www.udemy.com/course/intro-data-science/",
+      "level": "beginner",
+      "category": "data",
+      "tags": ["python", "data science", "pandas", "numpy"]
+    },
+    {
+      "title": "Node.js para Iniciantes",
+      "provider": "Nodebr (YouTube)",
+      "description": "Curso completo e gratuito de Node.js em português, do básico ao avançado, com projetos práticos.",
+      "url": "https://www.youtube.com/playlist?list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["node.js", "javascript", "backend", "api"]
+    },
+    {
+      "title": "React Native: Desenvolva APPs Nativas",
+      "provider": "Udemy (João Ribeiro)",
+      "description": "Aprenda a criar aplicativos mobile nativos para iOS e Android usando React Native e JavaScript.",
+      "url": "https://www.udemy.com/course/react-native-desenvolva-aplicativos-mobile/",
+      "level": "intermediate",
+      "category": "mobile",
+      "tags": ["react native", "mobile", "ios", "android"]
+    },
+    {
+      "title": "PHP para Iniciantes",
+      "provider": "Curso em Vídeo (YouTube)",
+      "description": "Curso de PHP básico com Gustavo Guanabara, cobrindo sintaxe, formulários, sessões e banco de dados.",
+      "url": "https://www.youtube.com/playlist?list=PLHz_AreHm4dm4beCCCmW4xwKl0S35ePzM",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["php", "backend", "guanabara", "web"]
+    },
+    {
+      "title": "Amazon Web Services (AWS) - Fundamentos",
+      "provider": "Escola da Nuvem",
+      "description": "Curso gratuito de fundamentos da AWS preparatório para certificação Cloud Practitioner, oferecido por instituição brasileira.",
+      "url": "https://escoladanuvem.org/",
+      "level": "beginner",
+      "category": "cloud",
+      "tags": ["aws", "cloud", "certificação", "amazon"]
+    },
+    {
+      "title": "Desenvolvimento Web Completo 2024",
+      "provider": "Udemy (Jorge Sant Ana)",
+      "description": "Curso completo em português com 20 projetos, incluindo HTML, CSS, Bootstrap, JavaScript, PHP, MySQL e muito mais.",
+      "url": "https://www.udemy.com/course/web-completo/",
+      "level": "beginner",
+      "category": "web",
+      "tags": ["html", "css", "javascript", "php", "fullstack"]
+    },
+    {
+      "title": "Lógica de Programação e Algoritmos",
+      "provider": "Curso em Vídeo (YouTube)",
+      "description": "Curso fundamental de lógica de programação com Gustavo Guanabara, usando Visualg e pseudocódigo.",
+      "url": "https://www.youtube.com/playlist?list=PLHz_AreHm4dmSj0MHol_aoNYCSGFqvfXV",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["lógica", "algoritmos", "visualg", "guanabara"]
+    },
+    {
+      "title": "Curso em Vídeo: MySQL",
+      "provider": "YouTube (Curso em Vídeo)",
+      "description": "Aprenda banco de dados MySQL do zero com Gustavo Guanabara, incluindo modelagem, consultas e otimização.",
+      "url": "https://www.youtube.com/playlist?list=PLHz_AreHm4dkBs-795Dsgvau_ekxg8g1r",
+      "level": "beginner",
+      "category": "data",
+      "tags": ["mysql", "banco de dados", "sql", "guanabara"]
+    },
+    {
+      "title": "Curso em Vídeo: JavaScript",
+      "provider": "YouTube (Curso em Vídeo)",
+      "description": "Curso completo de JavaScript com Gustavo Guanabara, cobrindo lógica de programação, DOM, objetos e mais.",
+      "url": "https://www.youtube.com/playlist?list=PLHz_AreHm4dlsK3Nr9GVvXCbpQyHQl1o1",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["javascript", "dom", "guanabara", "frontend"]
+    },
+    {
+      "title": "Potência Tech powered by iFood - Desenvolvimento de Jogos",
+      "provider": "Digital Innovation One (DIO)",
+      "description": "Bootcamp gratuito focado em desenvolvimento de jogos com Unity e C#, com certificado reconhecido pelo mercado.",
+      "url": "https://web.dio.me/track/potencia-tech-ifood-desenvolvimento-de-jogos",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["unity", "c#", "jogos", "ifood"]
+    },
+    {
+      "title": "Santander Bootcamp 2024 - Trilha Fullstack",
+      "provider": "Digital Innovation One (DIO)",
+      "description": "Bootcamp completo de desenvolvimento fullstack com Java, Spring Boot, Angular e tecnologias modernas.",
+      "url": "https://web.dio.me/track/santander-bootcamp-2024",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["java", "spring", "angular", "fullstack"]
+    },
+    {
+      "title": "Introdução à Ciência de Dados com Python",
+      "provider": "Udemy (Zurubabel)",
+      "description": "Curso brasileiro gratuito de introdução a Data Science usando Python, Pandas, NumPy e visualização de dados.",
+      "url": "https://www.udemy.com/course/intro-data-science/",
+      "level": "beginner",
+      "category": "data",
+      "tags": ["python", "data science", "pandas", "numpy"]
+    },
+    {
+      "title": "Node.js para Iniciantes",
+      "provider": "Nodebr (YouTube)",
+      "description": "Curso completo e gratuito de Node.js em português, do básico ao avançado, com projetos práticos.",
+      "url": "https://www.youtube.com/playlist?list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["node.js", "javascript", "backend", "api"]
+    },
+    {
+      "title": "React Native: Desenvolva APPs Nativas",
+      "provider": "Udemy (João Ribeiro)",
+      "description": "Aprenda a criar aplicativos mobile nativos para iOS e Android usando React Native e JavaScript.",
+      "url": "https://www.udemy.com/course/react-native-desenvolva-aplicativos-mobile/",
+      "level": "intermediate",
+      "category": "mobile",
+      "tags": ["react native", "mobile", "ios", "android"]
+    },
+    {
+      "title": "PHP para Iniciantes",
+      "provider": "Curso em Vídeo (YouTube)",
+      "description": "Curso de PHP básico com Gustavo Guanabara, cobrindo sintaxe, formulários, sessões e banco de dados.",
+      "url": "https://www.youtube.com/playlist?list=PLHz_AreHm4dm4beCCCmW4xwKl0S35ePzM",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["php", "backend", "guanabara", "web"]
+    },
+    {
+      "title": "Amazon Web Services (AWS) - Fundamentos",
+      "provider": "Escola da Nuvem",
+      "description": "Curso gratuito de fundamentos da AWS preparatório para certificação Cloud Practitioner, oferecido por instituição brasileira.",
+      "url": "https://escoladanuvem.org/",
+      "level": "beginner",
+      "category": "cloud",
+      "tags": ["aws", "cloud", "certificação", "amazon"]
+    },
+    {
+      "title": "Desenvolvimento Web Completo 2024",
+      "provider": "Udemy (Jorge Sant Ana)",
+      "description": "Curso completo em português com 20 projetos, incluindo HTML, CSS, Bootstrap, JavaScript, PHP, MySQL e muito mais.",
+      "url": "https://www.udemy.com/course/web-completo/",
+      "level": "beginner",
+      "category": "web",
+      "tags": ["html", "css", "javascript", "php", "fullstack"]
+    },
+    {
+      "title": "Lógica de Programação e Algoritmos",
+      "provider": "Curso em Vídeo (YouTube)",
+      "description": "Curso fundamental de lógica de programação com Gustavo Guanabara, usando Visualg e pseudocódigo.",
+      "url": "https://www.youtube.com/playlist?list=PLHz_AreHm4dmSj0MHol_aoNYCSGFqvfXV",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["lógica", "algoritmos", "visualg", "guanabara"]
+    },
+    {
+      "title": "Java COMPLETO - Programação Orientada a Objetos + Projetos",
+      "provider": "Udemy (Nélio Alves)",
+      "description": "Curso completo de Java e POO com um dos professores brasileiros mais renomados, incluindo Spring Boot, JPA, JDBC e projetos reais.",
+      "url": "https://www.udemy.com/course/java-curso-completo/",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["java", "poo", "spring boot", "nélio alves"]
+    },
+
+    {
+      "title": "Figma UI/UX Design Essentials",
+      "provider": "Udemy",
+      "description": "Aprenda a criar designs de interfaces e protótipos interativos com Figma. Cobre desde os fundamentos até técnicas avançadas de design de UI/UX. (Curso pago)",
+      "url": "https://www.udemy.com/course/figma-essentials/",
+      "level": "beginner",
+      "category": "design",
+      "tags": ["figma", "ui", "ux", "design", "prototipagem"]
+    },
+    {
+      "title": "Google UX Design Professional Certificate",
+      "provider": "Coursera (Google)",
+      "description": "Certificação profissional do Google que ensina o processo de design de UX do início ao fim, incluindo pesquisa, ideação, prototipagem e testes. (Pago, com opção de auxílio financeiro)",
+      "url": "https://www.coursera.org/professional-certificates/google-ux-design",
+      "level": "beginner",
+      "category": "design",
+      "tags": ["ux", "google", "coursera", "design thinking", "certificação"]
+    },
+    {
+      "title": "Algoritmos e Estrutura de Dados I",
+      "provider": "USP (Coursera)",
+      "description": "Curso da Universidade de São Paulo que ensina os fundamentos de algoritmos e estruturas de dados usando a linguagem C.",
+      "url": "https://www.coursera.org/learn/algoritmos-estrutura-dados-1",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["algoritmos", "estrutura de dados", "c", "usp"]
+    },
+    {
+      "title": "Formação em Cibersegurança",
+      "provider": "Alura",
+      "description": "Trilha de cursos completa que aborda desde os fundamentos de redes e segurança até pentesting e defesa cibernética. (Pago)",
+      "url": "https://www.alura.com.br/formacao-ciberseguranca",
+      "level": "intermediate",
+      "category": "it",
+      "tags": ["cibersegurança", "pentest", "redes", "segurança"]
+    },
+    {
+      "title": "Microsoft Azure Fundamentals (AZ-900)",
+      "provider": "Microsoft Learn",
+      "description": "Trilha de aprendizado oficial e gratuita da Microsoft para se preparar para o exame de certificação AZ-900, cobrindo os conceitos de nuvem e serviços do Azure.",
+      "url": "https://learn.microsoft.com/pt-br/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/",
+      "level": "beginner",
+      "category": "cloud",
+      "tags": ["azure", "microsoft", "cloud", "certificação", "az-900"]
+    },
+    {
+      "title": "The Complete 2024 Web Development Bootcamp",
+      "provider": "Udemy (Dr. Angela Yu)",
+      "description": "Um dos cursos mais bem avaliados da Udemy para desenvolvimento web, cobrindo HTML, CSS, JavaScript, Node.js, React e muito mais. (Curso pago)",
+      "url": "https://www.udemy.com/course/the-complete-web-development-bootcamp/",
+      "level": "beginner",
+      "category": "web",
+      "tags": ["fullstack", "web development", "react", "node.js", "angela yu"]
+    },
+    {
+      "title": "SQL for Data Science",
+      "provider": "Coursera (University of California, Davis)",
+      "description": "Aprenda a usar SQL para extrair e analisar dados em bancos de dados. Essencial para aspirantes a cientistas de dados e analistas. (Pago)",
+      "url": "https://www.coursera.org/learn/sql-for-data-science",
+      "level": "beginner",
+      "category": "data",
+      "tags": ["sql", "data science", "database", "analytics"]
+    },
+    {
+      "title": "DevOps Fundamentals",
+      "provider": "Alura",
+      "description": "Formação que introduz a cultura DevOps, abordando integração contínua, entrega contínua, Docker e Kubernetes. (Pago)",
+      "url": "https://www.alura.com.br/formacao-devops",
+      "level": "intermediate",
+      "category": "cloud",
+      "tags": ["devops", "ci-cd", "docker", "kubernetes", "alura"]
+    },
+    {
+      "title": "Flutter & Dart - The Complete Guide",
+      "provider": "Udemy (Maximilian Schwarzmüller)",
+      "description": "Curso completo para criar aplicativos iOS e Android nativos com Flutter e Dart, do mesmo instrutor de outros cursos populares. (Curso pago)",
+      "url": "https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/",
+      "level": "intermediate",
+      "category": "mobile",
+      "tags": ["flutter", "dart", "mobile", "ios", "android"]
+    },
+    {
+      "title": "Machine Learning by Stanford University",
+      "provider": "Coursera (Andrew Ng)",
+      "description": "O lendário curso de Machine Learning ministrado por Andrew Ng, uma das maiores referências na área. (Pago)",
+      "url": "https://www.coursera.org/learn/machine-learning",
+      "level": "advanced",
+      "category": "ai",
+      "tags": ["machine learning", "stanford", "andrew ng", "ai"]
+    },
+    {
+      "title": "TypeScript: The Complete Developer's Guide",
+      "provider": "Udemy (Stephen Grider)",
+      "description": "Curso completo de TypeScript que ensina desde os fundamentos até conceitos avançados como decorators, generics e integração com React e Express. (Curso pago)",
+      "url": "https://www.udemy.com/course/typescript-the-complete-developers-guide/",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["typescript", "javascript", "react", "express", "frontend"]
+    },
+    {
+      "title": "Fundamentos de Blockchain e Criptomoedas",
+      "provider": "Coursera (University at Buffalo)",
+      "description": "Aprenda os conceitos fundamentais de blockchain, criptomoedas, contratos inteligentes e aplicações descentralizadas (DApps). Ideal para quem quer entender a tecnologia por trás do Bitcoin e Ethereum.",
+      "url": "https://www.coursera.org/learn/blockchain-basics",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["blockchain", "criptomoedas", "bitcoin", "ethereum", "smart contracts"]
+    },
+
+    {
+      "title": "Fundamentos de Blockchain e Criptomoedas",
+      "provider": "Coursera (University at Buffalo)",
+      "description": "Aprenda os conceitos fundamentais de blockchain, criptomoedas, contratos inteligentes e aplicações descentralizadas (DApps). Ideal para quem quer entender a tecnologia por trás do Bitcoin e Ethereum.",
+      "url": "https://www.coursera.org/learn/blockchain-basics",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["blockchain", "criptomoedas", "bitcoin", "ethereum", "smart contracts"]
+    },
+    {
+      "title": "MongoDB University - M001: MongoDB Basics",
+      "provider": "MongoDB University",
+      "description": "Curso oficial e gratuito da MongoDB sobre os fundamentos do banco de dados NoSQL mais popular, incluindo CRUD, agregações e modelagem de dados.",
+      "url": "https://learn.mongodb.com/learning-paths/introduction-to-mongodb",
+      "level": "beginner",
+      "category": "data",
+      "tags": ["mongodb", "nosql", "database", "backend"]
+    },
+    {
+      "title": "Kotlin for Android Development",
+      "provider": "Google Developers",
+      "description": "Curso oficial do Google para aprender Kotlin e desenvolvimento Android. Aborda desde sintaxe básica até criação de apps completos.",
+      "url": "https://developer.android.com/courses/android-basics-kotlin/course",
+      "level": "beginner",
+      "category": "mobile",
+      "tags": ["kotlin", "android", "mobile", "google"]
+    },
+    {
+      "title": "Vue.js - The Complete Guide",
+      "provider": "Udemy (Maximilian Schwarzmüller)",
+      "description": "Curso completo de Vue.js 3, incluindo Composition API, Vuex, Vue Router e projetos práticos. (Curso pago)",
+      "url": "https://www.udemy.com/course/vuejs-2-the-complete-guide/",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["vue.js", "javascript", "frontend", "spa"]
+    },
+    {
+      "title": "Programação em C - Fundamentos",
+      "provider": "Universidade Federal de Santa Catarina (UFSC)",
+      "description": "Curso gratuito que ensina programação em C desde o básico, ideal para quem quer uma base sólida em programação.",
+      "url": "https://www.youtube.com/playlist?list=PL8iN9FQ7_jt6H5m4Gm0H89sybzR9yaaka",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["c", "programação", "ufsc", "algoritmos"]
+    },
+    {
+      "title": "Power BI para Data Science",
+      "provider": "Data Science Academy",
+      "description": "Curso gratuito de Power BI em português, cobrindo dashboards, DAX, modelagem de dados e integração com outras ferramentas.",
+      "url": "https://www.datascienceacademy.com.br/course/microsoft-power-bi-para-data-science",
+      "level": "beginner",
+      "category": "data",
+      "tags": ["power bi", "data visualization", "business intelligence", "dax"]
+    },
+    {
+      "title": "GraphQL with React: The Complete Developer's Guide",
+      "provider": "Udemy (Stephen Grider)",
+      "description": "Aprenda a construir aplicações modernas usando GraphQL com React, incluindo Apollo Client e servidor Node.js. (Curso pago)",
+      "url": "https://www.udemy.com/course/graphql-with-react-course/",
+      "level": "advanced",
+      "category": "programming",
+      "tags": ["graphql", "react", "apollo", "api"]
+    },
+    {
+      "title": "Django for Everybody",
+      "provider": "Coursera (University of Michigan)",
+      "description": "Especialização completa em Django, o framework web Python, ministrada por Dr. Chuck Severance. (Pago, com opção de auditoria gratuita)",
+      "url": "https://www.coursera.org/specializations/django",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["django", "python", "web", "backend"]
+    },
+    {
+      "title": "Terraform for Beginners",
+      "provider": "freeCodeCamp (YouTube)",
+      "description": "Tutorial completo de Infrastructure as Code com Terraform, incluindo AWS, Azure e Google Cloud.",
+      "url": "https://www.youtube.com/watch?v=SLB_c_ayRMo",
+      "level": "intermediate",
+      "category": "cloud",
+      "tags": ["terraform", "iac", "devops", "cloud"]
+    },
+    {
+      "title": "Ethical Hacking from Scratch",
+      "provider": "Udemy",
+      "description": "Curso completo de hacking ético sem requisitos prévios, cobrindo testes de penetração, exploração de vulnerabilidades e segurança. (Curso pago)",
+      "url": "https://www.udemy.com/course/learn-ethical-hacking-from-scratch/",
+      "level": "intermediate",
+      "category": "it",
+      "tags": ["ethical hacking", "pentest", "cybersecurity", "kali linux"]
+    },
+    {
+      "title": "Ruby on Rails Tutorial",
+      "provider": "Michael Hartl",
+      "description": "Tutorial clássico e gratuito de Ruby on Rails, disponível online como livro e vídeo, ensinando desenvolvimento web do zero.",
+      "url": "https://www.railstutorial.org/",
+      "level": "beginner",
+      "category": "programming",
+      "tags": ["ruby", "rails", "web", "backend"]
+    },
+    {
+      "title": "Data Structures and Algorithms Specialization",
+      "provider": "Coursera (UC San Diego)",
+      "description": "Especialização profunda em estruturas de dados e algoritmos, essencial para entrevistas técnicas. (Pago)",
+      "url": "https://www.coursera.org/specializations/data-structures-algorithms",
+      "level": "advanced",
+      "category": "programming",
+      "tags": ["algoritmos", "estruturas de dados", "competitive programming"]
+    },
+    {
+      "title": "Angular - The Complete Guide",
+      "provider": "Udemy (Maximilian Schwarzmüller)",
+      "description": "Curso definitivo de Angular, cobrindo desde o básico até recursos avançados como RxJS, NgRx e Server-Side Rendering. (Curso pago)",
+      "url": "https://www.udemy.com/course/the-complete-guide-to-angular-2/",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["angular", "typescript", "frontend", "spa"]
+    },
+    {
+      "title": "Elasticsearch Complete Guide",
+      "provider": "Udemy",
+      "description": "Aprenda a usar Elasticsearch para busca e análise de dados em tempo real, incluindo Kibana e Logstash. (Curso pago)",
+      "url": "https://www.udemy.com/course/elasticsearch-complete-guide/",
+      "level": "advanced",
+      "category": "data",
+      "tags": ["elasticsearch", "search", "elk stack", "big data"]
+    },
+    {
+      "title": "Swift Programming for iOS",
+      "provider": "Stanford University (YouTube)",
+      "description": "Curso completo e gratuito de Stanford sobre desenvolvimento iOS com Swift e SwiftUI.",
+      "url": "https://www.youtube.com/playlist?list=PLpGHT1n4-mAtTj9oywMWoBx0dCGd51_yG",
+      "level": "intermediate",
+      "category": "mobile",
+      "tags": ["swift", "ios", "swiftui", "stanford", "apple"]
+    },
+    {
+      "title": "Arquitetura de Software",
+      "provider": "Alura",
+      "description": "Formação completa sobre padrões de arquitetura, design patterns, microservices e boas práticas de software. (Pago)",
+      "url": "https://www.alura.com.br/formacao-arquitetura-software",
+      "level": "advanced",
+      "category": "programming",
+      "tags": ["arquitetura", "design patterns", "microservices", "software engineering"]
+    },
+    {
+      "title": "Redis University - Redis for Developers",
+      "provider": "Redis University",
+      "description": "Curso oficial e gratuito sobre Redis, o banco de dados in-memory mais popular, incluindo caching, pub/sub e estruturas de dados.",
+      "url": "https://university.redis.com/courses/ru101/",
+      "level": "intermediate",
+      "category": "data",
+      "tags": ["redis", "cache", "database", "nosql"]
+    },
+    {
+      "title": "Salesforce Administrator Certification",
+      "provider": "Trailhead (Salesforce)",
+      "description": "Trilha oficial e gratuita da Salesforce para se tornar um administrador certificado, com módulos interativos e prática hands-on.",
+      "url": "https://trailhead.salesforce.com/content/learn/trails/force_com_admin_beginner",
+      "level": "beginner",
+      "category": "it",
+      "tags": ["salesforce", "crm", "cloud", "certificação"]
+    },
+    {
+      "title": "FastAPI - Modern APIs with Python",
+      "provider": "freeCodeCamp (YouTube)",
+      "description": "Tutorial completo de FastAPI, o framework Python moderno para criar APIs de alta performance.",
+      "url": "https://www.youtube.com/watch?v=0sOvCWFmrtA",
+      "level": "intermediate",
+      "category": "programming",
+      "tags": ["fastapi", "python", "api", "rest"]
+    },
+    {
+      "title": "Jenkins, From Zero To Hero",
+      "provider": "Udemy",
+      "description": "Curso completo de Jenkins para integração e entrega contínua (CI/CD), do básico ao avançado. (Curso pago)",
+      "url": "https://www.udemy.com/course/jenkins-from-zero-to-hero/",
+      "level": "intermediate",
+      "category": "cloud",
+      "tags": ["jenkins", "ci-cd", "devops", "automation"]
+    },
+    {
+      "title": "PostgreSQL: Do Zero ao Avançado",
+      "provider": "Udemy",
+      "description": "Curso completo de PostgreSQL em português, cobrindo desde comandos básicos SQL até otimização, procedures, triggers e replicação. (Curso pago)",
+      "url": "https://www.udemy.com/course/banco-de-dados-postgresql/",
+      "level": "intermediate",
+      "category": "data",
+      "tags": ["postgresql", "sql", "database", "backend"]
+    }
+]
+
+
+  

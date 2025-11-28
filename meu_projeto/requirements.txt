@@ -1,0 +1,10 @@
+flask
+flask-sqlalchemy
+flask-migrate
+pymysql
+cryptography
+flask-login
+flask-bcrypt
+python-dotenv
+pytz
+gunicorn

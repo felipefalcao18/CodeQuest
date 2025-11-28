@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redefinir senha</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/resetar_senha.css') }}">
+</head>
+<body>
+  <!-- Botão de alternância de tema -->
+  <button class="btn-theme" id="toggleTheme" aria-label="Alternar tema">
+  <span id="themeIcon">🌙</span>
+</button>
+
+  <main class="form-container" role="main">
+    <div class="login-header">
+       <div class="logo">
+         <img src="{{ url_for('static', filename='images/logo-removebg-preview.png') }}" alt="CodeQuest Logo">
+       </div>
+    <header class="form-header">
+      <h2>Redefinir senha</h2>
+      <p>Escolha uma nova senha segura para sua conta.</p>
+    </header>
+
+    <!-- Mensagens Flash -->
+    <section aria-live="polite">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+              <strong>{{ category | capitalize }}:</strong> {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </section>
+
+    <form method="post" novalidate>
+   <div class="input-group">
+  <label for="senha">Nova senha:</label>
+  
+  <!-- Wrapper para ícone e input -->
+  <div class="input-wrapper">
+  <span class="input-icon">🔒</span>
+  <input type="password" name="senha" id="senha" class="input-field" placeholder="Digite sua nova senha" required>
+  <i data-feather="eye" id="togglePassword" class="toggle-icon"></i>
+</div>
+
+  <!-- Indicador de força da senha -->
+  <div class="password-strength" id="passwordStrength" hidden>
+    <div class="strength-bar"><div class="strength-fill"></div></div>
+    <span class="strength-text">Força da senha</span>
+  </div>
+</div>
+
+
+      <button type="submit" class="btn btn-primary">Salvar nova senha</button>
+    </form>
+
+    <nav class="link-container">
+      <a href="{{ url_for('routes.login') }}">← Voltar ao login</a>
+    </nav>
+  </main>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script defer src="{{ url_for('static', filename='JS/resetar_senha.js') }}"></script>
+  
+</body>
+</html>

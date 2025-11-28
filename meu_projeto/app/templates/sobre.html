@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sobre — CodeQuest</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/sobre.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+  <header class="nav">
+  <div class="wrap">
+    <div class="logo">
+      <a href="{{ url_for('routes.dashboard') }}" class="logo-link" title="Ir para o Dashboard">
+        <img src="{{ url_for('static', filename='images/logo-removebg-preview.png') }}" alt="CodeQuest Logo">
+      </a>
+    </div>
+
+      <button class="nav-toggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-links" aria-label="menu principal">
+        <a href="/dashboard">Início</a>
+        <a href="/perguntas">Perguntas & Respostas</a>
+        <a href="/quiz">Quiz</a>
+        <a href="/cursos">Cursos</a>
+        <a href="/sobre" class="active">Sobre nós</a>
+        <a href="/ranking">Ranking</a>
+        <a href="/perfil">Perfil</a>
+        <a class="cta" href="/logout">Sair</a>
+
+        <div class="theme-toggle">
+          <input type="checkbox" id="dark-mode-toggle" aria-label="Alternar entre modo claro e modo escuro"/>
+          <label for="dark-mode-toggle" class="slider"></label>
+          <span class="mode-label">Claro</span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Banner FATEC -->
+    <div class="fatec-banner">
+  <div class="fatec-content">
+    <div class="fatec-logo">
+      <a href="https://fatecgarca.cps.sp.gov.br/" target="_blank" rel="noopener noreferrer">
+        <img src="{{ url_for('static', filename='images/fatec-garca logo.png') }}" 
+             alt="Logo FATEC Garça" 
+             class="fatec-logo-img">
+      </a>
+    </div>
+    <div class="fatec-info">
+      <h2 class="fatec-title">FATEC Garça</h2>
+      <p class="fatec-subtitle">Faculdade de Tecnologia de Garça - Dep. Julio Julinho Marcondes de Moura</p>
+      <p class="fatec-description">
+        Projeto desenvolvido como Trabalho de Conclusão de Curso (TCC) 
+        do curso de Análise e Desenvolvimento de Sistemas
+      </p>
+    </div>
+  </div>
+</div>
+
+    <div class="main-content">
+      <h1 class="page-title">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="var(--accent)"/>
+        </svg>
+        Sobre o Projeto
+      </h1>
+
+      <p class="page-subtitle">
+        Conheça mais sobre nossa plataforma de aprendizado e a equipe por trás dela.
+      </p>
+
+      <!-- ✨ NOVA SEÇÃO: Estatísticas -->
+      <div class="stats-section">
+        <h2 class="section-title">
+          <i class="fas fa-chart-line"></i>
+          CodeQuest em Números
+        </h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--success);">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-number" id="total-usuarios">{{ total_usuarios or 0 }}</div>
+            <div class="stat-label">Usuários Criados</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--info);">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            <div class="stat-number" id="total-perguntas">{{ total_perguntas or 0 }}</div>
+            <div class="stat-label">Perguntas Criadas</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--warning);">
+              <i class="fas fa-gamepad"></i>
+            </div>
+            <div class="stat-number" id="total-quizzes">{{ total_quizzes or 0 }}</div>
+            <div class="stat-label">Quizzes Completados</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--accent);">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="stat-number" id="total-conquistas">{{ total_conquistas or 0 }}</div>
+            <div class="stat-label">Conquistas Desbloqueadas</div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="var(--accent)"/>
+        </svg>
+        Missão
+      </h2>
+
+      <div class="mission-text">
+        Este projeto é um sistema de perguntas e respostas com quizzes para ajudar no aprendizado de programação. 
+        Ele serve como TCC (Trabalho de Conclusão de Curso) e pode ser expandido para uma comunidade de estudo 
+        colaborativa, facilitando o compartilhamento de conhecimento entre estudantes e profissionais da área.
+      </div>
+
+      <h3 class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="var(--accent)" stroke-width="2" fill="none"/>
+        </svg>
+        Funcionalidades Implementadas
+      </h3>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon" style="background: var(--success);">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <h4 class="feature-title">Sistema de Login</h4>
+          <p class="feature-description">Autenticação segura com registro de usuários e confirmação por e-mail para garantir a integridade da plataforma.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: var(--info);">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h4 class="feature-title">Perguntas & Respostas</h4>
+          <p class="feature-description">Sistema completo para criação, edição e moderação de perguntas e respostas com sistema de votação.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: var(--warning);">
+            <i class="fas fa-gamepad"></i>
+          </div>
+          <h4 class="feature-title">Sistema de Quiz</h4>
+          <p class="feature-description">Quizzes interativos com diferentes níveis de dificuldade e categorias com leaderboard para acompanhar o progresso.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: var(--accent);">
+            <i class="fas fa-tags"></i>
+          </div>
+          <h4 class="feature-title">Sistema de Tags</h4>
+          <p class="feature-description">Organização do conteúdo através de tags, busca full-text e filtros avançados para facilitar a navegação.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #10b981;">
+          <i class="fas fa-bullseye"></i>
+          </div>
+          <h4 class="feature-title">Sistema de Metas Semanais</h4>
+          <p class="feature-description">Defina e acompanhe metas personalizadas de estudo, com objetivos para perguntas, respostas e quizzes completados.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #3b82f6;">
+          <i class="fas fa-star"></i>
+          </div>
+          <h4 class="feature-title">Sistema de Pontuação e Níveis</h4>
+          <p class="feature-description">Ganhe pontos por suas atividades e evolua através de 6 níveis, desde Iniciante até Mestre, com badges exclusivos.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #8b5cf6;">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <h4 class="feature-title">Catálogo de Cursos</h4>
+          <p class="feature-description">Acesso a uma curadoria de cursos de TI das melhores plataformas, com filtros por categoria e nível.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: rgb(33, 33, 33);">
+            <i class="fas fa-adjust"></i>
+          </div>
+          <h4 class="feature-title">Modo Claro/Escuro</h4>
+          <p class="feature-description">Interface adaptável com tema claro e escuro para melhor conforto visual, acessibilidade e experiência personalizada.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #ef4444;">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h4 class="feature-title">Sistema de Conquistas</h4>
+          <p class="feature-description">Alcance suas metas e desbloqueie conquistas respondendo perguntas, completando quizzes e cumprindo objetivos.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #06b6d4;">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <h4 class="feature-title">Página Perfil de Usuário</h4>
+          <p class="feature-description">Página que exibe conquistas, número de perguntas e respostas do usuário, e a foto de perfil para uma visão personalizada.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #ec4899;">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <h4 class="feature-title">Sistema de Ranking</h4>
+          <p class="feature-description">Ranking global de usuários baseado em pontuação, conquistas e atividades na plataforma.</p>
+        </div>
+        <div class="feature-card">
+        <div class="feature-icon" style="background: #14b8a6;">
+    <i class="fas fa-history"></i>
+        </div>
+        <h4 class="feature-title">Histórico de Desempenho</h4>
+        <p class="feature-description">Acompanhe estatísticas detalhadas dos seus quizzes, tempo de resposta e evolução ao longo do tempo.</p>
+      </div>
+      </div>
+
+      <h3 class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke="var(--accent)" stroke-width="2"/>
+        </svg>
+        Tecnologias Utilizadas
+      </h3>
+
+      <div class="tech-grid">
+        <div class="tech-badge"><span><i class="fab fa-python"></i> Python</span></div>
+        <div class="tech-badge"><span><i class="fas fa-fire"></i> Flask</span></div>
+        <div class="tech-badge"><span><i class="fas fa-code"></i> Jinja2</span></div>
+        <div class="tech-badge"><span><i class="fas fa-cog"></i> Werkzeug</span></div>
+        <div class="tech-badge"><span><i class="fas fa-database"></i> SQLAlchemy</span></div>
+        <div class="tech-badge"><span><i class="fas fa-tools"></i> Alembic</span></div>
+        <div class="tech-badge"><span><i class="fas fa-server"></i> MySQL/XAMMP</span></div>
+        <div class="tech-badge"><span><i class="fa-solid fa-code-branch"></i> MySQL Workbench</span></div>
+        <div class="tech-badge"><span><i class="fas fa-layer-group"></i> MVC</span></div>
+        <div class="tech-badge"><span><i class="fab fa-html5"></i> HTML5</span></div>
+        <div class="tech-badge"><span><i class="fab fa-css3-alt"></i> CSS3</span></div>
+        <div class="tech-badge"><span><i class="fab fa-js"></i> JavaScript</span></div>
+        <div class="tech-badge"><span><i class="fab fa-bootstrap"></i> Bootstrap</span></div>
+        <div class="tech-badge"><span><i class="fas fa-font"></i> Font Awesome</span></div>
+        
+      </div>
+
+      <!-- ✨ NOVA SEÇÃO: Roadmap -->
+      <h3 class="section-title">
+        <i class="fas fa-road"></i>
+        Próximas Funcionalidades
+      </h3>
+
+      <div class="roadmap-section">
+        <div class="roadmap-item">
+          <div class="roadmap-status status-planning">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <div class="roadmap-content">
+            <h4>Notificações em Tempo Real</h4>
+            <p>Sistema de notificações push para respostas, menções e conquistas.</p>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-status status-planning">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="roadmap-content">
+            <h4>Modo Competitivo Multiplayer</h4>
+            <p>Desafios em tempo real entre usuários com ranking ao vivo.</p>
+          </div>
+        </div>
+         <div class="roadmap-item">
+          <div class="roadmap-status status-planning">
+             <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="roadmap-content">
+            <h4> Perfil com Estatísticas Avançadas</h4>
+            <p>Dashboard pessoal com gráficos de desempenho, histórico detalhado e evolução por categoria.</p>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-status status-planning">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <div class="roadmap-content">
+            <h4>Aplicativo Mobile Nativo</h4>
+            <p>App para iOS e Android com todas as funcionalidades da web.</p>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-status status-planning">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="roadmap-content">
+            <h4> Novos Jogos</h4>
+            <p>Seleção de jogos interativos para aprender de forma prática e divertida.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 108 0 4 4 0 00-8 0zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="var(--accent)" stroke-width="2"/>
+        </svg>
+        Nossa Equipe
+      </h3>
+
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="team-avatar">F</div>
+          <h4 class="team-name">Felipe Falcão</h4>
+          <p class="team-role">Aluno da Fatec Garça</p>
+          <p class="team-bio">Desenvolvedor do TCC.</p>
+        </div>
+        <div class="team-member">
+          <div class="team-avatar">I</div>
+          <h4 class="team-name">Igor Lopes</h4>
+      <p class="team-role">Aluno da Fatec Garça</p>
+          <p class="team-bio">Desenvolvedor do TCC.</p>
+        </div>
+        <div class="team-member">
+          <div class="team-avatar">Q</div>
+          <h4 class="team-name">Prof. Quirino</h4>
+          <p class="team-role">Orientador Acadêmico</p>
+          <p class="team-bio">Professor orientador do TCC.</p>
+        </div>
+      </div>
+
+      <div class="contact-section">
+        <h4 class="contact-title">Entre em Contato</h4>
+        <p style="color: var(--muted); margin: 8px 0;">
+          Tem alguma dúvida ou sugestão? Estamos aqui para ajudar!
+        </p>
+        <a href="mailto:fesouza18032005@gmail.com" class="contact-email">
+          <i class="fas fa-envelope"></i> fesouza18032005@gmail.com
+        </a>
+
+        <div class="social-links">
+          <a href="https://www.facebook.com/?locale=pt_BR" class="social-link" aria-label="Facebook">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://wa.me/5514981754155" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+
+          <a href="https://github.com/felipefalcao18/CodeQuest" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+           <i class="fa-brands fa-github"></i>
+          </a>
+        </div>
+
+        
+      </div>
+    </div>
+
+    <footer>
+      © 2025 — CodeQuest. Desenvolvido para facilitar o aprendizado.
+    </footer>
+  </main>
+
+  <script defer src="{{ url_for('static', filename='JS/sobre.js') }}"></script>
+</body>
+</html>

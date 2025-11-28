@@ -1,0 +1,13 @@
+cd Documents\CodeQuest\meu projeto(acesse o diretório do projeto pelo CMD)
+
+
+python -m venv venv
+venv\Scripts\activate
+
+
+python run.py
+
+
+python -m venv venv: Cria um ambiente virtual chamado venv. Esse ambiente é uma pasta isolada onde você pode instalar pacotes sem afetar o sistema ou outros projetos.
+
+venv\Scripts\activate (no Windows): Ativa o ambiente virtual, fazendo com que os comandos pip e python passem a usar os recursos e pacotes desse ambiente isolado.

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos de TI - CodeQuest</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+   <link rel="stylesheet" href="{{ url_for('static', filename='CSS/cursos.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+</head>
+<body>
+  <header class="nav">
+  <div class="wrap">
+    <div class="logo">
+      <a href="{{ url_for('routes.dashboard') }}" class="logo-link" title="Ir para o Dashboard">
+        <img src="{{ url_for('static', filename='images/logo-removebg-preview.png') }}" alt="CodeQuest Logo">
+      </a>
+    </div>
+
+    <button class="nav-toggle" aria-label="Abrir menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav-links" aria-label="menu principal">
+      <a href="/dashboard">Início</a>
+      <a href="/perguntas">Perguntas & Respostas</a>
+      <a href="/quiz">Quiz</a>
+      <a href="/cursos" class="active">Cursos</a>
+      <a href="/sobre">Sobre nós</a>
+      <a href="/ranking">Ranking</a>
+      <a href="/perfil">Perfil</a>
+      <a class="cta" href="/logout">Sair</a>
+
+      <div class="theme-toggle">
+        <input type="checkbox" id="dark-mode-toggle" aria-label="Alternar entre modo claro e modo escuro"/>
+        <label for="dark-mode-toggle" class="slider"></label>
+        <span class="mode-label">Claro</span>
+      </div>
+    </nav>
+  </div>
+</header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1><i class="fa-solid fa-laptop-code"></i> Cursos de TI</h1>
+            <p>Explore cursos gratuitos de programação e tecnologia das melhores plataformas</p>
+        </div>
+
+        <!-- Filters -->
+        <!-- Filters -->
+<div class="filters">
+    <div class="filters-grid">
+        <div class="filter-group">
+            <label for="search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                Buscar
+            </label>
+            <input type="text" id="search" placeholder="Ex: Python, JavaScript, React...">
+        </div>
+        <div class="filter-group">
+            <label for="category">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
+                Categoria
+            </label>
+            <select id="category">
+                <option value="">Todas</option>
+                <option value="ai">IA & Machine Learning</option>
+                <option value="cloud">Cloud Computing</option>
+                <option value="data">Data Science & Analytics</option>
+                <option value="design">Design & UX</option>
+                <option value="it">Suporte de TI & Redes</option>
+                <option value="mobile">Mobile Development</option>
+                <option value="programming">Programação</option>
+                <option value="web">Desenvolvimento Web</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="level">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Nível
+            </label>
+            <select id="level">
+                <option value="">Todos</option>
+                <option value="beginner">🟢 Iniciante</option>
+                <option value="intermediate">🟡 Intermediário</option>
+                <option value="advanced">🔴 Avançado</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="provider">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+                Plataforma
+            </label>
+            <select id="provider">
+                <option value="">Todas</option>
+                <option value="alura">Alura</option>
+                <option value="coursera">Coursera</option>
+                <option value="data science academy">Data Science Academy</option>
+                <option value="dio">Digital Innovation One (DIO)</option>
+                <option value="edx">edX</option>
+                <option value="escola da nuvem">Escola da Nuvem</option>
+                <option value="freecodecamp">freeCodeCamp</option>
+                <option value="google">Google Developers</option>
+                <option value="microsoft">Microsoft Learn</option>
+                <option value="mongodb">MongoDB University</option>
+                <option value="nodebr">Nodebr</option>
+                <option value="odin">The Odin Project</option>
+                <option value="redis">Redis University</option>
+                <option value="ruby">Ruby on Rails Tutorial</option>
+                <option value="salesforce">Salesforce Trailhead</option>
+                <option value="stanford">Stanford University</option>
+                <option value="udemy">Udemy</option>
+                <option value="ufsc">UFSC</option>
+                <option value="youtube">YouTube (Curso em Vídeo)</option>
+            </select>
+        </div>
+    </div>
+    <div class="filter-actions">
+        <button class="btn btn-secondary" onclick="clearFilters()">Limpar</button>
+        <button class="btn btn-primary" onclick="searchCourses()">Buscar Cursos</button>
+    </div>
+</div>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Carregando cursos...</p>
+        </div>
+
+        <!-- Courses Grid -->
+        <div id="courses-container" class="courses-grid"></div>
+
+        
+
+        <!-- Error State -->
+        <div id="error" class="error-state" style="display: none;">
+            <h3>😔 Ops! Algo deu errado</h3>
+            <p>Não conseguimos carregar os cursos no momento.</p>
+            <button class="btn btn-primary" onclick="loadCourses()">Tentar Novamente</button>
+        </div>
+
+         <footer>
+      © {{ ano_atual }} — CodeQuest. Desenvolvido para facilitar o aprendizado.
+    </footer>
+    </main>
+
+    <script defer src="{{ url_for('static', filename='JS/cursos.js') }}"></script>
+
+    
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Editar Pergunta – CodeQuest</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/editar_pergunta.css') }}">
+</head>
+<body>
+  
+  <div class="form-container">
+    <div class="login-header">
+       <div class="logo">
+         <img src="{{ url_for('static', filename='images/logo-removebg-preview.png') }}" alt="CodeQuest Logo">
+       </div>
+    <h2>📝 Editar Pergunta</h2>
+
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+      {% if mensagens %}
+        {% for categoria, msg in mensagens %}
+          <div class="flash-messages {{ categoria }}">
+            <p>{{ msg }}</p>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <div class="input-group">
+        <span>📋 Título:</span>
+        <input type="text" id="titulo" name="titulo" value="{{ pergunta.titulo }}" placeholder="Digite o título da pergunta" required>
+      </div>
+
+      <div class="input-group">
+        <span>📄 Conteúdo:</span>
+        <textarea id="conteudo" name="conteudo" placeholder="Descreva sua pergunta detalhadamente..." required>{{ pergunta.conteudo }}</textarea>
+      </div>
+
+      <div class="button-group">
+        <a href="{{ url_for('routes.listar_perguntas') }}" class="button secondary">Cancelar</a>
+        <button type="submit" class="button primary">Salvar alterações</button>
+      </div>
+    </form>
+  </div>
+
+<script defer src="{{ url_for('static', filename='JS/editar_pergunta.js') }}"></script>
+
+</body>
+</html>
